@@ -32,10 +32,8 @@
                 clearInterval(timerInterval)
             }
         }).then((result) => {
-            if (
-                result.dismiss === Swal.DismissReason.timer
-            ) {
-                console.log('I was closed by the timer')
+            if (result.dismiss === Swal.DismissReason.timer) {
+                console.log('<?php echo $success; ?>')
             }
         })
     </script>
@@ -43,32 +41,48 @@
 <?php }
 if (isset($err)) { ?>
     <script>
-        /* Pop Error Message */
-        const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 3000
-        });
-        Toast.fire({
-            type: 'error',
-            title: '<?php echo $err; ?>',
+        Swal.fire({
+            title: 'Failed',
+            html: '<?php echo $err; ?>',
+            timer: 1500,
+            type: "error",
+            onBeforeOpen: () => {
+                timerInterval = setInterval(() => {
+                    Swal.getContent().querySelector('strong')
+                        .textContent = Swal.getTimerLeft()
+                }, 1000)
+            },
+            onClose: () => {
+                clearInterval(timerInterval)
+            }
+        }).then((result) => {
+            if (result.dismiss === Swal.DismissReason.timer) {
+                console.log('<?php echo $err; ?>')
+            }
         })
     </script>
 
 <?php }
 if (isset($info)) { ?>
     <script>
-        /* Pop Warning  */
-        const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 3000
-        });
-        Toast.fire({
-            type: 'info',
-            title: '<?php echo $info; ?>',
+        Swal.fire({
+            title: 'Failed',
+            html: '<?php echo $info; ?>',
+            timer: 1500,
+            type: "info",
+            onBeforeOpen: () => {
+                timerInterval = setInterval(() => {
+                    Swal.getContent().querySelector('strong')
+                        .textContent = Swal.getTimerLeft()
+                }, 1000)
+            },
+            onClose: () => {
+                clearInterval(timerInterval)
+            }
+        }).then((result) => {
+            if (result.dismiss === Swal.DismissReason.timer) {
+                console.log('<?php echo $info; ?>')
+            }
         })
     </script>
 
