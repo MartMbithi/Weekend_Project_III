@@ -67,7 +67,7 @@ if (isset($_POST['add_staff'])) {
     $user_email = $_POST['user_email'];
     $user_password = sha1(md5($_POST['user_password']));
     $user_phone_no = $_POST['user_phone_no'];
-    $user_access_level = 'supplier';
+    $user_access_level = 'customer';
 
     /* Check If They Match */
     $sql = "SELECT * FROM  users  
@@ -134,7 +134,7 @@ if (isset($_POST['delete_staff'])) {
     $bind = $prepare->bind_param('s', $user_id);
     $prepare->execute();
     if ($prepare) {
-        $success = "Supplier Account Deleted";
+        $success = "Customer Account Deleted";
     } else {
         $err = "Failed!, Please Try Again";
     }
@@ -163,9 +163,9 @@ require_once('partials/head.php');
                 <div class="col-sm-12">
                     <div class="page-title-box">
                         <div class="btn-group float-right m-t-15">
-                            <button type="button" data-toggle="modal" data-target="#add_modal" class="btn btn-primary"> Register New Supplier</button>
+                            <button type="button" data-toggle="modal" data-target="#add_modal" class="btn btn-primary"> Register New Customer</button>
                         </div>
-                        <h4 class="page-title">Suppliers</h4>
+                        <h4 class="page-title">Customers</h4>
                     </div>
                 </div>
             </div>
@@ -176,7 +176,7 @@ require_once('partials/head.php');
                     <div class="modal-content">
                         <div class="modal-header align-items-center">
                             <div class="modal-title">
-                                <h6 class="mb-0">Register New Supplier</h6>
+                                <h6 class="mb-0">Register New Customer</h6>
                             </div>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
@@ -203,7 +203,7 @@ require_once('partials/head.php');
                                     </div>
                                 </div>
                                 <div class="text-right">
-                                    <button type="submit" name="add_staff" class="btn btn-primary">Register Supplier</button>
+                                    <button type="submit" name="add_staff" class="btn btn-primary">Register Customer</button>
                                 </div>
                             </form>
                         </div>
@@ -224,7 +224,7 @@ require_once('partials/head.php');
                             </thead>
                             <tbody>
                                 <?php
-                                $ret = "SELECT * FROM users WHERE user_access_level = 'supplier'";
+                                $ret = "SELECT * FROM users WHERE user_access_level = 'customer'";
                                 $stmt = $mysqli->prepare($ret);
                                 $stmt->execute(); //ok
                                 $res = $stmt->get_result();
@@ -274,7 +274,7 @@ require_once('partials/head.php');
                                                                 </div>
                                                             </div>
                                                             <div class="text-right">
-                                                                <button type="submit" name="update_staff" class="btn btn-primary">Update Supplier</button>
+                                                                <button type="submit" name="update_staff" class="btn btn-primary">Update Customer</button>
                                                             </div>
                                                         </form>
                                                     </div>
