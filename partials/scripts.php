@@ -20,7 +20,7 @@
         Swal.fire({
             title: 'Success',
             html: '<?php echo $success; ?>',
-            timer: 1500,
+            timer: 2500,
             type: "success",
             onBeforeOpen: () => {
                 timerInterval = setInterval(() => {
@@ -44,7 +44,7 @@ if (isset($err)) { ?>
         Swal.fire({
             title: 'Failed',
             html: '<?php echo $err; ?>',
-            timer: 1500,
+            timer: 2500,
             type: "error",
             onBeforeOpen: () => {
                 timerInterval = setInterval(() => {
@@ -68,7 +68,7 @@ if (isset($info)) { ?>
         Swal.fire({
             title: 'Failed',
             html: '<?php echo $info; ?>',
-            timer: 1500,
+            timer: 2500,
             type: "info",
             onBeforeOpen: () => {
                 timerInterval = setInterval(() => {

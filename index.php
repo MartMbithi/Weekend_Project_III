@@ -78,7 +78,7 @@ if (isset($_POST['Login'])) {
     if ($rs) {
         header("location:dashboard");
     } else {
-        $success = "Access Denied Please Check Your National ID Number Or Password";
+        $err = "Access Denied Please Check Your Email Or Password";
     }
 }
 
