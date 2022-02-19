@@ -162,18 +162,57 @@ require_once('partials/head.php');
             <div class="row">
                 <div class="col-sm-12">
                     <div class="page-title-box">
+                        <div class="btn-group float-right m-t-15">
+                            <button type="button" data-toggle="modal" data-target="#add_modal" class="btn btn-primary"> Register New Staff</button>
+                        </div>
                         <h4 class="page-title">Staffs</h4>
                     </div>
                 </div>
             </div>
-
-
-
-
+            <!-- Add User MOdal -->
+            <!-- Add Modal -->
+            <div class="modal fade fixed-right" id="add_modal" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog  modal-xl" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header align-items-center">
+                            <div class="modal-title">
+                                <h6 class="mb-0">Register New Staff</h6>
+                            </div>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post" enctype="multipart/form-data" role="form">
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <label for="">Full Name</label>
+                                        <input type="text" required name="user_name" class="form-control" id="exampleInputEmail1">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="">Phone Number</label>
+                                        <input type="text" required name="user_phone_no" class="form-control" id="exampleInputEmail1">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="">Password</label>
+                                        <input type="password" required name="user_password" class="form-control" id="exampleInputEmail1">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="">Email Address</label>
+                                        <input type="text" name="user_email" class="form-control" id="exampleInputEmail1">
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <button type="submit" name="add_staff" class="btn btn-primary">Register Staff</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-lg-12 col-xl-12">
                     <div class="card-box">
-                        <h4 class="header-title m-t-0 m-b-20">Recent Orders</h4>
                         <table id="datatable-buttons" class="table table-bordered mb-0">
                             <thead>
                                 <tr>
