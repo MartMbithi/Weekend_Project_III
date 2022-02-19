@@ -23,7 +23,10 @@
     <script src="assets/js/modernizr.min.js"></script>
     <!-- Sweet Alert css -->
     <link href="assets/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
-
+    <!-- DataTables -->
+    <link href="assets/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 </head>
 <?php
 /* Alert Sesion Via Alerts */
