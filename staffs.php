@@ -61,7 +61,46 @@
 session_start();
 require_once 'config/config.php';
 require_once 'config/codeGen.php';
-require_once 'partials/analytics.php';
+/* Add Staff */
+if (isset($_POST['add_staff'])) {
+    $user_name  = $_POST['user_name'];
+    $user_email = $_POST['user_email'];
+    $user_password = sha1(md5($_POST['user_password']));
+    $user_phone_no = $_POST['user_phone_no'];
+
+    /* Check If They Match */
+    $sql = "SELECT * FROM  users  
+    WHERE user_phone_no = '$user_phone_no' || user_email = '$user_email'";
+    $res = mysqli_query($mysqli, $sql);
+    if (mysqli_num_rows($res) > 0) {
+        $users = mysqli_fetch_assoc($res);
+        if ($users['user_phone_no'] == $user_phone_no || $users['user_email'] == $user_email) {
+            $err = "Email Or Phone Number Already Exists";
+        }
+    } else {
+        /* Persist */
+        $sql = "INSERT INTO users(user_name, user_email, user_password, user_phone_no) VALUES(?,?,?,?)";
+        $prepare = $mysqli->prepare($sql);
+        $bind = $prepare->bind_param(
+            'ssss',
+            $user_name,
+            $user_email,
+            $user_password,
+            $user_phone_no
+        );
+        $prepare->execute();
+        if ($prepare) {
+            $success = "$user_name Account Created";
+        } else {
+            $err = "Failed!, Please Try Again";
+        }
+    }
+}
+
+/* Update Staff */
+
+/* Delete Staff */
+
 /* Load Header Partial */
 require_once('partials/head.php');
 ?>
@@ -84,46 +123,12 @@ require_once('partials/head.php');
             <div class="row">
                 <div class="col-sm-12">
                     <div class="page-title-box">
-                        <h4 class="page-title">Dashboard</h4>
+                        <h4 class="page-title">Staffs</h4>
                     </div>
                 </div>
             </div>
 
 
-            <div class="row">
-                <div class="col-md-6 col-xl-3">
-                    <div class="card-box tilebox-one">
-                        <i class="icon-layers float-right text-muted"></i>
-                        <h6 class="text-muted text-uppercase m-b-20">Orders</h6>
-                        <h2 class="m-b-20" data-plugin="counterup"><?php echo $orders; ?></h2>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-xl-3">
-                    <div class="card-box tilebox-one">
-                        <i class="icon-paypal float-right text-muted"></i>
-                        <h6 class="text-muted text-uppercase m-b-20">Poultry Products</h6>
-                        <h2 class="m-b-20"><span data-plugin="counterup"><?php echo $products; ?></span></h2>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-xl-3">
-                    <div class="card-box tilebox-one">
-                        <i class="icon-chart float-right text-muted"></i>
-                        <h6 class="text-muted text-uppercase m-b-20">Suppliers</h6>
-                        <h2 class="m-b-20"><span data-plugin="counterup"><?php echo $suppliers; ?></span></h2>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-xl-3">
-                    <div class="card-box tilebox-one">
-                        <i class="icon-rocket float-right text-muted"></i>
-                        <h6 class="text-muted text-uppercase m-b-20">Customers</h6>
-                        <h2 class="m-b-20" data-plugin="counterup"><?php echo $customers; ?></h2>
-                    </div>
-                </div>
-            </div>
-            <!-- end row -->
 
 
             <div class="row">
@@ -183,10 +188,6 @@ require_once('partials/head.php');
         <!-- Footer -->
         <?php require_once('partials/footer.php'); ?>
         <!-- End Footer -->
-
-
-
-
 
     </div> <!-- End wrapper -->
 
