@@ -213,7 +213,7 @@ require_once('partials/head.php');
             <div class="row">
                 <div class="col-lg-12 col-xl-12">
                     <div class="card-box">
-                        <table id="datatable-buttons" class="table table-bordered mb-0">
+                        <table id="dt" class="table table-bordered mb-0">
                             <thead>
                                 <tr>
                                     <th>Product Details</th>
