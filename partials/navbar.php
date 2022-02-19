@@ -74,6 +74,9 @@
                         <a href="suppliers"><i class="fa fa-user-plus"></i> <span> Suppliers </span> </a>
                     </li>
                     <li>
+                        <a href="customers"><i class="fa fa-users"></i> <span> Customers </span> </a>
+                    </li>
+                    <li>
                         <a href="products"><i class="fa fa-list"></i> <span> Products </span> </a>
                     </li>
                     <li>
