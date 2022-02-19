@@ -61,6 +61,7 @@
 session_start();
 require_once 'config/config.php';
 require_once 'config/codeGen.php';
+require_once 'partials/analytics.php';
 /* Load Header Partial */
 require_once('partials/head.php');
 ?>
@@ -94,7 +95,7 @@ require_once('partials/head.php');
                     <div class="card-box tilebox-one">
                         <i class="icon-layers float-right text-muted"></i>
                         <h6 class="text-muted text-uppercase m-b-20">Orders</h6>
-                        <h2 class="m-b-20" data-plugin="counterup">1,587</h2>
+                        <h2 class="m-b-20" data-plugin="counterup"><?php echo $orders; ?></h2>
                     </div>
                 </div>
 
@@ -102,7 +103,7 @@ require_once('partials/head.php');
                     <div class="card-box tilebox-one">
                         <i class="icon-paypal float-right text-muted"></i>
                         <h6 class="text-muted text-uppercase m-b-20">Poultry Products</h6>
-                        <h2 class="m-b-20">$<span data-plugin="counterup">46,782</span></h2>
+                        <h2 class="m-b-20"><span data-plugin="counterup"><?php echo $products; ?></span></h2>
                     </div>
                 </div>
 
@@ -110,7 +111,7 @@ require_once('partials/head.php');
                     <div class="card-box tilebox-one">
                         <i class="icon-chart float-right text-muted"></i>
                         <h6 class="text-muted text-uppercase m-b-20">Suppliers</h6>
-                        <h2 class="m-b-20">$<span data-plugin="counterup">15.9</span></h2>
+                        <h2 class="m-b-20"><span data-plugin="counterup"><?php echo $suppliers; ?></span></h2>
                     </div>
                 </div>
 
@@ -118,7 +119,7 @@ require_once('partials/head.php');
                     <div class="card-box tilebox-one">
                         <i class="icon-rocket float-right text-muted"></i>
                         <h6 class="text-muted text-uppercase m-b-20">Customers</h6>
-                        <h2 class="m-b-20" data-plugin="counterup">1,890</h2>
+                        <h2 class="m-b-20" data-plugin="counterup"><?php echo $customers; ?></h2>
                     </div>
                 </div>
             </div>
