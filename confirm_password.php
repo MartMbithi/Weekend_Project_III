@@ -58,7 +58,35 @@
  * IN NO EVENT WILL DEVLAN  LIABILITY FOR ANY CLAIM, WHETHER IN CONTRACT 
  * TORT OR ANY OTHER THEORY OF LIABILITY, EXCEED THE LICENSE FEE PAID BY YOU, IF ANY.
  */
+session_start();
+require_once 'config/config.php';
+require_once 'config/codeGen.php';
 
+if (isset($_POST['reset_password'])) {
+    /* Handle Password Resets */
+    $user_email = $_SESSION['user_email'];
+    $new_password = sha1(md5($_POST['new_password']));
+    $confirm_password = sha1(md5($_POST['confirm_password']));
+
+    /* Check If Hashes Match */
+    if ($new_password != $confirm_password) {
+        $err = "Passwords Does Not Match, Please Retype Again";
+    } else {
+        /* Persist New Password Update */
+        $sql = "UPDATE users SET user_password = ? WHERE user_email = ?";
+        $prepare = $mysqli->prepare($sql);
+        $bind  = $prepare->bind_param('ss', $confirm_password, $user_email);
+        $prepare->execute();
+        if ($prepare) {
+            /* Alert Messages Via Session */
+            $_SESSION['success'] = 'Your Account Password Has Been Reset, Proceed To Login';
+            header('Location: index');
+            exit;
+        } else {
+            $err = "Failed!, Please Try Again";
+        }
+    }
+}
 
 
 /* Load Header Partial */

@@ -25,3 +25,10 @@
     <link href="assets/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
 
 </head>
+<?php
+/* Alert Sesion Via Alerts */
+if (isset($_SESSION['success'])) {
+    $success = $_SESSION['success'];
+    unset($_SESSION['success']);
+}
+?>
