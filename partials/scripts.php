@@ -33,16 +33,16 @@
     $(document).ready(function() {
 
         /* Data Tables */
-        $('.table').DataTable();
+        $('#dt').DataTable();
 
         /* Export TABLES */
-        var table = $('.reports').DataTable({
+        var table = $('#datatable-buttons').DataTable({
             lengthChange: false,
             buttons: ['copy', 'excel', 'pdf']
         });
 
-        table.buttons().container()
-            .appendTo('#datatable-buttons_wrapper .col-md-6:eq(0)');
+
+        table.buttons().container().appendTo('#datatable-buttons_wrapper .col-md-6:eq(0)');
     });
 </script>
 

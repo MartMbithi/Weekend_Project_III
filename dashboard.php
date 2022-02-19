@@ -318,7 +318,7 @@ require_once('partials/head.php');
                         <h4 class="header-title m-t-0 m-b-30">Top Contracts</h4>
 
                         <div class="table-responsive">
-                            <table class="table table-bordered mb-0">
+                            <table id="reports" class="table-bordered mb-0">
                                 <thead>
                                     <tr>
                                         <th>Company</th>
