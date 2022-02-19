@@ -261,7 +261,7 @@ require_once('partials/head.php');
                                                             <div class="row">
                                                                 <div class="form-group col-md-12">
                                                                     <label for="">Full Name</label>
-                                                                    <input type="text" required name="user_name" value="<?php echo $staff->useR_name; ?>" class="form-control" id="exampleInputEmail1">
+                                                                    <input type="text" required name="user_name" value="<?php echo $staff->user_name; ?>" class="form-control" id="exampleInputEmail1">
                                                                     <input type="hidden" required name="user_id" value="<?php echo $staff->user_id; ?>" class="form-control" id="exampleInputEmail1">
                                                                 </div>
                                                                 <div class="form-group col-md-6">
@@ -295,10 +295,10 @@ require_once('partials/head.php');
                                                     </div>
                                                     <form method="POST">
                                                         <div class="modal-body text-center text-danger">
-                                                            <h4>Delete <?php echo $staffs->user_name; ?> </h4>
+                                                            <h4>Delete <?php echo $staff->user_name; ?> </h4>
                                                             <br>
                                                             <!-- Hide This -->
-                                                            <input type="hidden" name="user_id" value="<?php echo $staffs->user_id; ?>">
+                                                            <input type="hidden" name="user_id" value="<?php echo $staff->user_id; ?>">
                                                             <button type="button" class="text-center btn btn-success" data-dismiss="modal">No</button>
                                                             <input type="submit" name="delete_staff" value="Delete" class="text-center btn btn-danger">
                                                         </div>
