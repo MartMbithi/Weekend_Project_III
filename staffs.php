@@ -216,42 +216,113 @@ require_once('partials/head.php');
                         <table id="dt" class="table table-bordered mb-0">
                             <thead>
                                 <tr>
-                                    <th>Product Details</th>
-                                    <th>Supplier</th>
-                                    <th>Order Details</th>
-                                    <th>Order Status</th>
+                                    <th>Full Name</th>
+                                    <th>Email</th>
+                                    <th>Phone No</th>
+                                    <th>Manage</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
-                                $ret = "SELECT * FROM orders o
-                                    INNER JOIN users u ON o.order_supplier_id = u.user_id
-                                    INNER JOIN products p ON p.product_id = o.order_product_id
-                                    ";
+                                $ret = "SELECT * FROM users WHERE user_access_level = 'staff'";
                                 $stmt = $mysqli->prepare($ret);
                                 $stmt->execute(); //ok
                                 $res = $stmt->get_result();
-                                while ($orders = $res->fetch_object()) {
+                                while ($staff = $res->fetch_object()) {
                                 ?>
                                     <tr>
-                                        <th>
-                                            <?php echo $orders->product_code . ' ' . $orders->product_name; ?>
-                                        </th>
-                                        <td>Name: <?php echo $orders->user_name; ?> <br>
-                                            Phone : <?php echo $orders->user_phone; ?>
+                                        <td>
+                                            <?php echo $staff->user_name; ?>
                                         </td>
                                         <td>
-                                            Order # : <?php echo $ordes->order_number; ?><br>
-                                            Order QTY: <?php echo $orders->order_qty; ?><br>
-                                            Date: <?php echo $orders->order_date; ?>
+                                            <?php echo $staff->user_email; ?>
                                         </td>
                                         <td>
-                                            <?php if ($ordes->order_status = 'Delivered') { ?>
-                                                <span class="badge badge-success">Delivered</span>
-                                            <?php } else { ?>
-                                                <span class="badge badge-danger">Pending</span>
-                                            <?php } ?>
+                                            <?php echo $staff->user_phone_no; ?>
                                         </td>
+                                        <td>
+                                            <a data-toggle="modal" href="#update_<?php echo $staff->user_id; ?>" class="badge badge-primary"><i class="fas fa-edit"></i> Edit</a>
+                                            <a data-toggle="modal" href="#delete_<?php echo $staff->user_id; ?>" class="badge badge-danger"><i class="fas fa-trash"></i> Delete</a>
+                                        </td>
+                                        <!-- Update Modal -->
+                                        <div class="modal fade fixed-right" id="update_<?php echo $users->user_id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                            <div class="modal-dialog  modal-xl" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header align-items-center">
+                                                        <div class="modal-title">
+                                                            <h6 class="mb-0">Update <?php echo $users->user_name; ?></h6>
+                                                        </div>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form method="post" enctype="multipart/form-data" role="form">
+                                                            <div class="row">
+                                                                <div class="form-group col-md-12">
+                                                                    <label for="">Full Name</label>
+                                                                    <input type="text" required name="user_name" value="<?php echo $users->user_name; ?>" class="form-control" id="exampleInputEmail1">
+                                                                    <input type="hidden" required name="user_id" value="<?php echo $users->user_id; ?>" class="form-control" id="exampleInputEmail1">
+                                                                </div>
+                                                                <div class="form-group col-md-4">
+                                                                    <label for="">National ID Number</label>
+                                                                    <input type="text" required name="user_idno" value="<?php echo $users->user_idno; ?>" class="form-control" id="exampleInputEmail1">
+                                                                </div>
+                                                                <div class="form-group col-md-4">
+                                                                    <label for="">Phone Number</label>
+                                                                    <input type="text" required name="user_phoneno" value="<?php echo $users->user_phoneno; ?>" class="form-control" id="exampleInputEmail1">
+                                                                </div>
+                                                                <div class="form-group col-md-4">
+                                                                    <label for="">Acess Rights</label>
+                                                                    <select name="user_access_level" style="width: 100%;" required class="basic form-control">
+                                                                        <option><?php echo $users->user_access_level; ?></option>
+                                                                        <option>Staff</option>
+                                                                        <option>admin</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="form-group col-md-6">
+                                                                    <label for="">Email Address</label>
+                                                                    <input type="text" required name="user_email" value="<?php echo $users->user_email; ?>" class="form-control" id="exampleInputEmail1">
+                                                                </div>
+                                                                <div class="form-group col-md-6">
+                                                                    <label for="">Address</label>
+                                                                    <input type="text" name="user_address" value="<?php echo $users->user_address; ?>" class="form-control" id="exampleInputEmail1">
+                                                                </div>
+                                                            </div>
+                                                            <div class="text-right">
+                                                                <button type="submit" name="update_staff" class="btn btn-primary">Update</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- End Modal -->
+
+                                        <!-- Delete Modal -->
+                                        <div class="modal fade" id="delete_<?php echo $staffs->user_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">CONFIRM DELETE</h5>
+                                                        <button type="button" class="close" data-dismiss="modal">
+                                                            <span>&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <form method="POST">
+                                                        <div class="modal-body text-center text-danger">
+                                                            <h4>Delete <?php echo $staffs->user_name; ?> </h4>
+                                                            <br>
+                                                            <!-- Hide This -->
+                                                            <input type="hidden" name="user_id" value="<?php echo $staffs->user_id; ?>">
+                                                            <button type="button" class="text-center btn btn-success" data-dismiss="modal">No</button>
+                                                            <input type="submit" name="delete_staff" value="Delete" class="text-center btn btn-danger">
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- End Modal -->
                                     </tr>
                                 <?php } ?>
                             </tbody>
