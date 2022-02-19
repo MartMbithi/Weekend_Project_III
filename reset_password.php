@@ -58,8 +58,24 @@
  * IN NO EVENT WILL DEVLAN  LIABILITY FOR ANY CLAIM, WHETHER IN CONTRACT 
  * TORT OR ANY OTHER THEORY OF LIABILITY, EXCEED THE LICENSE FEE PAID BY YOU, IF ANY.
  */
-
-
+session_start();
+require_once 'config/config.php';
+require_once 'config/codeGen.php';
+if (isset($_POST['reset_password'])) {
+    $user_email = $_POST['user_email'];
+    /* Check If User Exists */
+    $sql = "SELECT * FROM  users WHERE user_email = '$user_email'";
+    $res = mysqli_query($mysqli, $sql);
+    if (mysqli_num_rows($res) > 0) {
+        /* Redirect User To Confirm Password */
+        $_SESSION['success'] = 'Password Reset Token Generated, Proceed To Confirm Password';
+        $_SESSION['user_email'] = $user_email;
+        header('Location: confirm_password');
+        exit;
+    } else {
+        $err = "Email Address  Does Not Exist";
+    }
+}
 
 /* Load Header Partial */
 require_once('partials/head.php');
