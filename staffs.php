@@ -125,6 +125,20 @@ if (isset($_POST['update_staff'])) {
 }
 
 /* Delete Staff */
+if (isset($_POST['delete_staff'])) {
+    $user_id = $_POST['user_id'];
+
+    /* Persist0 */
+    $sql = "DELETE FROM users WHERE user_id = ?";
+    $prepare = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param('s', $user_id);
+    $prepare->execute();
+    if ($prepare) {
+        $success = "Staff Account Deleted";
+    } else {
+        $err = "Failed!, Please Try Again";
+    }
+}
 
 /* Load Header Partial */
 require_once('partials/head.php');
