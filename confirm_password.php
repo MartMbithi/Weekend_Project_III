@@ -126,7 +126,7 @@ require_once('partials/head.php');
                         </div>
                         <div class="form-group text-center row m-t-10">
                             <div class="col-12">
-                                <button class="btn btn-success btn-block waves-effect waves-light" name="Confirm" type="submit">Confirm Password</button>
+                                <button class="btn btn-success btn-block waves-effect waves-light" name="reset_password" type="submit">Confirm Password</button>
                             </div>
                         </div>
                     </form>
