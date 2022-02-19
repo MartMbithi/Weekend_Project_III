@@ -88,18 +88,17 @@ require_once('partials/head.php');
 
                         <div class="form-group row">
                             <div class="col-12">
-                                <input class="form-control" type="text" name="user_email" required placeholder="Email">
+                                <input class="form-control" name="new_password" type="password" required placeholder="New Password">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-12">
+                                <input class="form-control" name="confirm_password" type="password" required placeholder="Confirm Password">
                             </div>
                         </div>
                         <div class="form-group text-center row m-t-10">
                             <div class="col-12">
-                                <button class="btn btn-success btn-block waves-effect waves-light" name="Reset" type="submit">Reset Password</button>
-                            </div>
-                        </div>
-
-                        <div class="form-group row m-t-30 mb-0">
-                            <div class="col-12">
-                                <a href="index" class="text-muted"><i class="fa fa-lock m-r-5"></i> Remember your pssword?</a>
+                                <button class="btn btn-success btn-block waves-effect waves-light" name="Confirm" type="submit">Confirm Password</button>
                             </div>
                         </div>
                     </form>
