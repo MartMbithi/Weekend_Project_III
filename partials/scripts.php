@@ -11,7 +11,7 @@
 <script src="assets/js/jquery.app.js"></script>
 
 <!-- Sweet Alerts -->
-<script src="assets/plugins/sweetalert2/sweetalert2.all.min.js"></script>
+<script src="assets/sweetalert2/sweetalert2.all.min.js"></script>
 <!-- Init Alerts -->
 <!-- Init Sweet Alerts -->
 <?php if (isset($success)) { ?>
@@ -20,14 +20,13 @@
         Swal.fire({
             title: 'Success',
             html: '<?php echo $success; ?>',
-            timer: 500,
+            timer: 1500,
             type: "success",
             onBeforeOpen: () => {
-                Swal.showLoading()
                 timerInterval = setInterval(() => {
                     Swal.getContent().querySelector('strong')
                         .textContent = Swal.getTimerLeft()
-                }, 100)
+                }, 1000)
             },
             onClose: () => {
                 clearInterval(timerInterval)

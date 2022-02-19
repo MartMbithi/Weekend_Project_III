@@ -22,6 +22,6 @@
     <!-- Modernizr js -->
     <script src="assets/js/modernizr.min.js"></script>
     <!-- Sweet Alert css -->
-    <link href="assets/plugins/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
 
 </head>

@@ -62,7 +62,6 @@ session_start();
 require_once 'config/config.php';
 require_once 'config/codeGen.php';
 
-
 /* Handle Login */
 if (isset($_POST['Login'])) {
     $user_email = $_POST['user_email'];
