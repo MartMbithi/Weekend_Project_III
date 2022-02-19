@@ -67,6 +67,7 @@ if (isset($_POST['add_staff'])) {
     $user_email = $_POST['user_email'];
     $user_password = sha1(md5($_POST['user_password']));
     $user_phone_no = $_POST['user_phone_no'];
+    $user_access_level = 'staff';
 
     /* Check If They Match */
     $sql = "SELECT * FROM  users  
@@ -79,14 +80,15 @@ if (isset($_POST['add_staff'])) {
         }
     } else {
         /* Persist */
-        $sql = "INSERT INTO users(user_name, user_email, user_password, user_phone_no) VALUES(?,?,?,?)";
+        $sql = "INSERT INTO users(user_name, user_email, user_password, user_phone_no, user_access_level) VALUES(?,?,?,?,?)";
         $prepare = $mysqli->prepare($sql);
         $bind = $prepare->bind_param(
-            'ssss',
+            'sssss',
             $user_name,
             $user_email,
             $user_password,
-            $user_phone_no
+            $user_phone_no,
+            $user_access_level
         );
         $prepare->execute();
         if ($prepare) {
@@ -98,6 +100,29 @@ if (isset($_POST['add_staff'])) {
 }
 
 /* Update Staff */
+if (isset($_POST['update_staff'])) {
+    $user_name = $_POST['user_name'];
+    $user_email = $_POST['user_email'];
+    $user_id = $_POST['user_id'];
+    $user_phone_no = $_POST['user_phone_no'];
+
+    /* Persist */
+    $sql = "UPDATE users SET user_name =?, user_email =?, user_phone_no =? WHERE user_id =?";
+    $prepare = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param(
+        'ssss',
+        $suer_name,
+        $user_email,
+        $user_phone_no,
+        $user_id
+    );
+    $prepare->execute();
+    if ($prepare) {
+        $success = "$user_name Account Updated";
+    } else {
+        $err = "Failed!, Please Try Again";
+    }
+}
 
 /* Delete Staff */
 
