@@ -61,7 +61,30 @@
 session_start();
 require_once 'config/config.php';
 require_once 'config/codeGen.php';
-require_once 'partials/analytics.php';
+/* Update User Profile */
+if (isset($_POST['update_profile'])) {
+    $user_id = $_SESSION['user_id'];
+    $user_name = $_POST['user_name'];
+    $user_email = $_POST['user_email'];
+    $user_phone_no = $_POST['user_phone_no'];
+
+    /* Persist */
+    $sql = "UPDATE users SET user_name =?, user_email =?, user_phone_no =? WHERE user_id =?";
+    $prepare = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param(
+        'ssss',
+        $user_name,
+        $user_email,
+        $user_phone_no,
+        $user_id
+    );
+    $prepare->execute();
+    if ($prepare) {
+        $success = "Profile Updated";
+    } else {
+        $err = "Failed!, Please Try Again";
+    }
+}
 /* Load Header Partial */
 require_once('partials/head.php');
 ?>
