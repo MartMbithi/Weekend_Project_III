@@ -85,6 +85,38 @@ if (isset($_POST['update_profile'])) {
         $err = "Failed!, Please Try Again";
     }
 }
+
+/* Change Password */
+if (isset($_POST['change_password'])) {
+    $user_id = $_SESSION['user_id'];
+    $old_password = sha1(md5($_POST['old_password']));
+    $new_password = sha1(md5($_POST['new_password']));
+    $confirm_password = sha1(md5($_POST['confirm_password']));
+
+    /* Check If Old Password  Match  */
+    $sql = "SELECT * FROM  users WHERE user_id = '$user_id'";
+    $res = mysqli_query($mysqli, $sql);
+    if (mysqli_num_rows($res) > 0) {
+        $row = mysqli_fetch_assoc($res);
+        if ($old_password != $row['user_password']) {
+            $err =  "Please Enter Correct Old Password";
+        } elseif ($new_password != $confirm_password) {
+            $err = "Confirmation Password Does Not Match";
+        } else {
+            $new_password  = sha1(md5($_POST['new_password']));
+            $query = "UPDATE users SET  user_password =? WHERE user_id =?";
+            $stmt = $mysqli->prepare($query);
+            $rc = $stmt->bind_param('ss', $new_password, $id);
+            $stmt->execute();
+            if ($stmt) {
+                $success = "Password Updated";
+            } else {
+                $err = "Please Try Again Or Try Later";
+            }
+        }
+    }
+}
+
 /* Load Header Partial */
 require_once('partials/head.php');
 ?>
