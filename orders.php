@@ -108,24 +108,34 @@ if (isset($_POST['add_order'])) {
 if (isset($_POST['update_order'])) {
     $order_number = $_POST['order_number'];
     $order_qty = $_POST['order_qty'];
-    $order_amount = $_POST['order_amount'];
     $order_date = date('d M Y');
+    $order_product_id = $_POST['order_product_id'];
 
-    /* Persist */
-    $sql = "UPDATE orders SET order_qty=?, order_amount =?, order_date =? WHERE order_number =?";
-    $prepare = $mysqli->prepare($sql);
-    $bind = $prepare->bind_param(
-        'ssss',
-        $order_qty,
-        $order_amount,
-        $order_date,
-        $order_number
-    );
-    $prepare->execute();
-    if ($prepare) {
-        $success = "Order # $order_number Updated";
+    $sql = "SELECT * FROM  products WHERE product_id = '$order_product_id'";
+    $res = mysqli_query($mysqli, $sql);
+    if (mysqli_num_rows($res) > 0) {
+        $product = mysqli_fetch_assoc($res); {
+            $order_payable_price = $product['product_price'] * $order_qty;
+
+            /* Persist */
+            $sql = "UPDATE orders SET order_qty=?, order_amount =?, order_date =? WHERE order_number =?";
+            $prepare = $mysqli->prepare($sql);
+            $bind = $prepare->bind_param(
+                'ssss',
+                $order_qty,
+                $order_payable_price,
+                $order_date,
+                $order_number
+            );
+            $prepare->execute();
+            if ($prepare) {
+                $success = "Order # $order_number Updated";
+            } else {
+                $err = "Failed!, Please Try Again Later";
+            }
+        }
     } else {
-        $err = "Failed!, Please Try Again Later";
+        $err = "Product Does Not Exist";
     }
 }
 
