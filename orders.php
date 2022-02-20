@@ -137,6 +137,21 @@ if (isset($_POST['delete_order'])) {
 }
 
 /* Mark As Paid */
+if (isset($_POST['pay_order'])) {
+    $order_id = $_POST['order_id'];
+    $order_status = 'Paid';
+
+    /* Persist */
+    $sql = "UPDATE orders SET order_status =? WHERE order_id =?";
+    $prepare = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param('ss', $order_status, $order_id);
+    $prepare->execute();
+    if ($prepare) {
+        $success = "Order Marked As Paid";
+    } else {
+        $err = "Failed!, Please Try Again Later";
+    }
+}
 /* Load Header Partial */
 require_once('partials/head.php');
 ?>
