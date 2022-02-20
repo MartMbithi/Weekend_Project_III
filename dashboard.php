@@ -111,7 +111,7 @@ require_once('partials/head.php');
                     <div class="card-box tilebox-one">
                         <i class="icon-rocket float-right text-muted"></i>
                         <h6 class="text-muted text-uppercase m-b-20">Pending Order Payments</h6>
-                        <h2 class="m-b-20" data-plugin="counterup">Ksh <?php echo $unpaid_orders; ?></h2>
+                        <h2 class="m-b-20" data-plugin="counterup">Ksh <?php echo number_format($unpaid_orders, 2); ?></h2>
                     </div>
                 </div>
 
@@ -119,7 +119,7 @@ require_once('partials/head.php');
                     <div class="card-box tilebox-one">
                         <i class="icon-chart float-right text-muted"></i>
                         <h6 class="text-muted text-uppercase m-b-20">Overall Revenue</h6>
-                        <h2 class="m-b-20"><span data-plugin="counterup">Ksh <?php echo $paid_orders; ?></span></h2>
+                        <h2 class="m-b-20"><span data-plugin="counterup">Ksh <?php echo  number_format($paid_orders, 2); ?></span></h2>
                     </div>
                 </div>
             </div>
@@ -160,6 +160,7 @@ require_once('partials/head.php');
                                         <td>
                                             Order # : <?php echo $ordes->order_number; ?><br>
                                             Order QTY: <?php echo $orders->order_qty; ?><br>
+                                            Payment Amt: Ksh <?php echo number_format($orders->order_amount, 2); ?><br>
                                             Date: <?php echo $orders->order_date; ?>
                                         </td>
                                         <td>
