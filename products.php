@@ -112,6 +112,19 @@ if (isset($_POST['update_product'])) {
 }
 
 /* Delete Product */
+if (isset($_POST['delete_product'])) {
+    $product_id = $_POST['product_id'];
+    /* Persist */
+    $sql = "DELETE FROM products WHERE product_id = ?";
+    $prepare = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param('s', $product_id);
+    $prepare->execute();
+    if ($prepare) {
+        $success = "Product Deleted";
+    } else {
+        $err = "Failed!, Please Try Again";
+    }
+}
 
 
 /* Load Header Partial */
