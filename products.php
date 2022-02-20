@@ -103,7 +103,7 @@ if (isset($_POST['update_product'])) {
     $bind = $prepare->bind_param(
         'sssss',
         $product_name,
-        $product_qty,
+        $product_qty, 
         $product_price,
         $product_desc,
         $product_code
