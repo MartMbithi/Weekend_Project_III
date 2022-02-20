@@ -155,16 +155,16 @@ require_once('partials/head.php');
                                             <?php echo $orders->product_code . ' ' . $orders->product_name; ?>
                                         </th>
                                         <td>Name: <?php echo $orders->user_name; ?> <br>
-                                            Phone : <?php echo $orders->user_phone; ?>
+                                            Phone : <?php echo $orders->user_phone_no; ?>
                                         </td>
                                         <td>
-                                            Order # : <?php echo $ordes->order_number; ?><br>
+                                            Order # : <?php echo $orders->order_number; ?><br>
                                             Order QTY: <?php echo $orders->order_qty; ?><br>
                                             Payment Amt: Ksh <?php echo number_format($orders->order_amount, 2); ?><br>
                                             Date: <?php echo $orders->order_date; ?>
                                         </td>
                                         <td>
-                                            <?php if ($ordes->order_status = 'paid') { ?>
+                                            <?php if ($orders->order_status == 'paid') { ?>
                                                 <span class="badge badge-success">Paid</span>
                                             <?php } else { ?>
                                                 <span class="badge badge-danger">Pending</span>
