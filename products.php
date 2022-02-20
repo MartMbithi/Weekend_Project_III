@@ -88,6 +88,28 @@ if (isset($_POST['add_product'])) {
 }
 
 /* Update Product */
+if (isset($_POST['update_product'])) {
+    $product_code = $_POST['product_code'];
+    $product_name = $_POST['product_name'];
+    $product_qty = $_POST['product_qty'];
+    $product_desc = $_POST['product_desc'];
+
+    /* Persist */
+    $sql = "UPDATE products SET product_name =?, product_qty =?, product_desc =? WHERE product_code =?";
+    $prepare = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param(
+        'ssss',
+        $product_name,
+        $product_qty,
+        $product_desc
+    );
+    $prepare->execute();
+    if ($prepare) {
+        $success  = "$product_code - $product_name Updated";
+    } else {
+        $err = "Failed!, Please Try Again";
+    }
+}
 
 /* Delete Product */
 
