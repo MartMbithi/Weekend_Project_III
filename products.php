@@ -68,15 +68,17 @@ if (isset($_POST['add_product'])) {
     $product_name = $_POST['product_name'];
     $product_qty = $_POST['product_qty'];
     $product_desc = $_POST['product_desc'];
+    $product_price = $_POST['product_price'];
 
     /* Persist */
-    $sql = "INSERT INTO products (product_name, product_code, product_qty, product_desc) VALUES(?,?,?,?)";
+    $sql = "INSERT INTO products (product_name, product_code, product_qty, product_price, product_desc) VALUES(?,?,?,?,?)";
     $prepare = $mysqli->prepare($sql);
     $bind  = $prepare->bind_param(
-        'ssss',
+        'sssss',
         $product_name,
         $product_code,
         $prooduct_qty,
+        $product_price,
         $product_desc
     );
     $prepare->execute();
@@ -93,14 +95,16 @@ if (isset($_POST['update_product'])) {
     $product_name = $_POST['product_name'];
     $product_qty = $_POST['product_qty'];
     $product_desc = $_POST['product_desc'];
+    $product_price = $_POST['product_price'];
 
     /* Persist */
-    $sql = "UPDATE products SET product_name =?, product_qty =?, product_desc =? WHERE product_code =?";
+    $sql = "UPDATE products SET product_name =?, product_qty =?, product_price =?,  product_desc =? WHERE product_code =?";
     $prepare = $mysqli->prepare($sql);
     $bind = $prepare->bind_param(
-        'ssss',
+        'sssss',
         $product_name,
         $product_qty,
+        $product_price,
         $product_desc
     );
     $prepare->execute();
