@@ -77,7 +77,7 @@ if (isset($_POST['add_product'])) {
         'sssss',
         $product_name,
         $product_code,
-        $prooduct_qty,
+        $product_qty,
         $product_price,
         $product_desc
     );
@@ -154,9 +154,9 @@ require_once('partials/head.php');
                 <div class="col-sm-12">
                     <div class="page-title-box">
                         <div class="btn-group float-right m-t-15">
-                            <button type="button" data-toggle="modal" data-target="#add_modal" class="btn btn-primary"> Register New Customer</button>
+                            <button type="button" data-toggle="modal" data-target="#add_modal" class="btn btn-primary"> Register New Product</button>
                         </div>
-                        <h4 class="page-title">Customers</h4>
+                        <h4 class="page-title">Poultry Farm Products</h4>
                     </div>
                 </div>
             </div>
@@ -167,7 +167,7 @@ require_once('partials/head.php');
                     <div class="modal-content">
                         <div class="modal-header align-items-center">
                             <div class="modal-title">
-                                <h6 class="mb-0">Register New Customer</h6>
+                                <h6 class="mb-0">Register New Product</h6>
                             </div>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
@@ -176,25 +176,25 @@ require_once('partials/head.php');
                         <div class="modal-body">
                             <form method="post" enctype="multipart/form-data" role="form">
                                 <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label for="">Product Name</label>
+                                        <input type="text" required name="product_name" class="form-control" id="exampleInputEmail1">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="">Product Quantity</label>
+                                        <input type="number" required name="product_qty" class="form-control" id="exampleInputEmail1">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="">Unit Price (KSH)</label>
+                                        <input type="number" required name="product_price" class="form-control" id="exampleInputEmail1">
+                                    </div>
                                     <div class="form-group col-md-12">
-                                        <label for="">Full Name</label>
-                                        <input type="text" required name="user_name" class="form-control" id="exampleInputEmail1">
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="">Phone Number</label>
-                                        <input type="text" required name="user_phone_no" class="form-control" id="exampleInputEmail1">
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="">Password</label>
-                                        <input type="password" required name="user_password" class="form-control" id="exampleInputEmail1">
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="">Email Address</label>
-                                        <input type="text" name="user_email" class="form-control" id="exampleInputEmail1">
+                                        <label for="">Product Details</label>
+                                        <textarea type="text" name="product_desc" rows="5" class="form-control" id="exampleInputEmail1"></textarea>
                                     </div>
                                 </div>
                                 <div class="text-right">
-                                    <button type="submit" name="add_staff" class="btn btn-primary">Register Customer</button>
+                                    <button type="submit" name="add_product" class="btn btn-primary">Register Product</button>
                                 </div>
                             </form>
                         </div>
