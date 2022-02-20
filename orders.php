@@ -311,9 +311,37 @@ require_once('partials/head.php');
                                             Ksh <?php echo number_format($orders->order_amount, 2); ?>
                                         </td>
                                         <td>
+                                            <?php if ($orders->order_status == 'Paid') { ?>
+                                                <a data-toggle="modal" href="#pay_<?php echo $orders->order_id; ?>" class="badge badge-success"><i class="fa fa-check"></i> Mark Paid</a>
+                                            <?php } ?>
                                             <a data-toggle="modal" href="#update_<?php echo $orders->order_id; ?>" class="badge badge-primary"><i class="fa fa-edit"></i> Edit</a>
                                             <a data-toggle="modal" href="#delete_<?php echo $orders->order_id; ?>" class="badge badge-danger"><i class="fa fa-trash"></i> Delete</a>
                                         </td>
+                                        <!-- Pay Order -->
+                                        <div class="modal fade" id="pay_<?php echo $orders->order_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">CONFIRM PAYMENT</h5>
+                                                        <button type="button" class="close" data-dismiss="modal">
+                                                            <span>&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <form method="POST">
+                                                        <div class="modal-body text-center text-success">
+                                                            <h4>Mark Order # <?php echo $orders->order_number; ?> As Paid? </h4>
+                                                            <br>
+                                                            <!-- Hide This -->
+                                                            <input type="hidden" name="order_id" value="<?php echo $orders->order_id; ?>">
+                                                            <button type="button" class="text-center btn btn-danger" data-dismiss="modal">No</button>
+                                                            <input type="submit" name="pay_order" value="Mark As Paid" class="text-center btn btn-success">
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- End Modal -->
+
                                         <!-- Update Modal -->
                                         <div class="modal fade fixed-right" id="update_<?php echo $orders->order_id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                                             <div class="modal-dialog  modal-xl" role="document">
