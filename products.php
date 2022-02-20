@@ -105,7 +105,8 @@ if (isset($_POST['update_product'])) {
         $product_name,
         $product_qty,
         $product_price,
-        $product_desc
+        $product_desc,
+        $product_code
     );
     $prepare->execute();
     if ($prepare) {
@@ -271,11 +272,11 @@ require_once('partials/head.php');
                                                                 </div>
                                                                 <div class="form-group col-md-12">
                                                                     <label for="">Product Details</label>
-                                                                    <textarea type="text" name="product_desc" rows="5" class="form-control" id="exampleInputEmail1">value="<?php echo $products->product_desc; ?>"</textarea>
+                                                                    <textarea type="text" name="product_desc" rows="5" class="form-control" id="exampleInputEmail1"><?php echo $products->product_desc; ?></textarea>
                                                                 </div>
                                                             </div>
                                                             <div class="text-right">
-                                                                <button type="submit" name="add_product" class="btn btn-primary">Register Product</button>
+                                                                <button type="submit" name="update_product" class="btn btn-primary">Update Product</button>
                                                             </div>
                                                         </form>
                                                     </div>
@@ -299,7 +300,7 @@ require_once('partials/head.php');
                                                             <h4>Delete <?php echo $products->product_name; ?> </h4>
                                                             <br>
                                                             <!-- Hide This -->
-                                                            <input type="hidden" name="product_code" value="<?php echo $products->product_code; ?>">
+                                                            <input type="hidden" name="product_id" value="<?php echo $products->product_id; ?>">
                                                             <button type="button" class="text-center btn btn-success" data-dismiss="modal">No</button>
                                                             <input type="submit" name="delete_product" value="Delete" class="text-center btn btn-danger">
                                                         </div>
