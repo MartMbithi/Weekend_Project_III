@@ -355,7 +355,23 @@ require_once('partials/head.php');
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-
+                                                        <form method="post" enctype="multipart/form-data" role="form">
+                                                            <div class="row">
+                                                                <div class="form-group col-md-6">
+                                                                    <label for="">Order Product</label>
+                                                                    <input type="text" readonly value="<?php echo $orders->product_code . ' ' . $orders->product_name; ?>" required class="form-control" id="exampleInputEmail1">
+                                                                    <input type="hidden" readonly value="<?php echo $orders->order_product_id; ?>" required name="order_product_id" class="form-control" id="exampleInputEmail1">
+                                                                    <input type="hidden" readonly value="<?php echo $orders->order_number; ?>" required name="order_number" class="form-control" id="exampleInputEmail1">
+                                                                </div>
+                                                                <div class="form-group col-md-6">
+                                                                    <label for="">Order Qty</label>
+                                                                    <input type="number" value="<?php echo $orders->order_qty; ?>" required name="order_qty" class="form-control" id="exampleInputEmail1">
+                                                                </div>
+                                                            </div>
+                                                            <div class="text-right">
+                                                                <button type="submit" name="update_order" class="btn btn-primary">Update Order</button>
+                                                            </div>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>
