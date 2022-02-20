@@ -92,7 +92,7 @@ require_once('partials/head.php');
             <div class="row">
                 <div class="col-lg-12 col-xl-12">
                     <div class="card-box">
-                        <table id="dt" class="table table-bordered mb-0">
+                        <table id="datatable-buttons" class="table table-bordered mb-0">
                             <thead>
                                 <tr>
                                     <th>Full Name</th>
@@ -135,9 +135,7 @@ require_once('partials/head.php');
 
     </div> <!-- End wrapper -->
 
-
     <?php require_once('partials/scripts.php'); ?>
-
 </body>
 
 </html>
