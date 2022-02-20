@@ -289,7 +289,7 @@ require_once('partials/head.php');
                                     <tr>
                                         <td>
                                             <?php echo $orders->order_number; ?> <br>
-                                            <?php if ($orders->order_status == 'Paid') { ?>
+                                            <?php if ($orders->order_status == 'paid') { ?>
                                                 <span class="badge badge-success"><i class="fa fa-check"></i> Paid</span>
                                             <?php } else { ?>
                                                 <span class="badge badge-danger">Pending</span>
@@ -311,7 +311,7 @@ require_once('partials/head.php');
                                             Ksh <?php echo number_format($orders->order_amount, 2); ?>
                                         </td>
                                         <td>
-                                            <?php if ($orders->order_status == 'Paid') { ?>
+                                            <?php if ($orders->order_status != 'paid') { ?>
                                                 <a data-toggle="modal" href="#pay_<?php echo $orders->order_id; ?>" class="badge badge-success"><i class="fa fa-check"></i> Mark Paid</a>
                                             <?php } ?>
                                             <a data-toggle="modal" href="#update_<?php echo $orders->order_id; ?>" class="badge badge-primary"><i class="fa fa-edit"></i> Edit</a>
@@ -334,7 +334,7 @@ require_once('partials/head.php');
                                                             <!-- Hide This -->
                                                             <input type="hidden" name="order_id" value="<?php echo $orders->order_id; ?>">
                                                             <button type="button" class="text-center btn btn-danger" data-dismiss="modal">No</button>
-                                                            <input type="submit" name="pay_order" value="Mark As Paid" class="text-center btn btn-success">
+                                                            <input type="submit" name="pay_order" value="Yes" class="text-center btn btn-success">
                                                         </div>
                                                     </form>
                                                 </div>
