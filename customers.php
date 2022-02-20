@@ -65,7 +65,6 @@ require_once 'config/codeGen.php';
 if (isset($_POST['add_staff'])) {
     $user_name  = $_POST['user_name'];
     $user_email = $_POST['user_email'];
-    $user_password = sha1(md5($_POST['user_password']));
     $user_phone_no = $_POST['user_phone_no'];
     $user_access_level = 'customer';
 
@@ -80,13 +79,12 @@ if (isset($_POST['add_staff'])) {
         }
     } else {
         /* Persist */
-        $sql = "INSERT INTO users(user_name, user_email, user_password, user_phone_no, user_access_level) VALUES(?,?,?,?,?)";
+        $sql = "INSERT INTO users(user_name, user_email, user_phone_no, user_access_level) VALUES(?,?,?,?)";
         $prepare = $mysqli->prepare($sql);
         $bind = $prepare->bind_param(
-            'sssss',
+            'ssss',
             $user_name,
             $user_email,
-            $user_password,
             $user_phone_no,
             $user_access_level
         );
@@ -189,15 +187,15 @@ require_once('partials/head.php');
                                         <label for="">Full Name</label>
                                         <input type="text" required name="user_name" class="form-control" id="exampleInputEmail1">
                                     </div>
-                                    <div class="form-group col-md-4">
+                                    <div class="form-group col-md-6">
                                         <label for="">Phone Number</label>
                                         <input type="text" required name="user_phone_no" class="form-control" id="exampleInputEmail1">
                                     </div>
-                                    <div class="form-group col-md-4">
+                                   <!--  <div class="form-group col-md-4">
                                         <label for="">Password</label>
                                         <input type="password" required name="user_password" class="form-control" id="exampleInputEmail1">
-                                    </div>
-                                    <div class="form-group col-md-4">
+                                    </div> -->
+                                    <div class="form-group col-md-6">
                                         <label for="">Email Address</label>
                                         <input type="text" name="user_email" class="form-control" id="exampleInputEmail1">
                                     </div>
