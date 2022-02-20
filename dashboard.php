@@ -110,8 +110,8 @@ require_once('partials/head.php');
                 <div class="col-md-6 col-xl-3">
                     <div class="card-box tilebox-one">
                         <i class="icon-chart float-right text-muted"></i>
-                        <h6 class="text-muted text-uppercase m-b-20">Suppliers</h6>
-                        <h2 class="m-b-20"><span data-plugin="counterup"><?php echo $suppliers; ?></span></h2>
+                        <h6 class="text-muted text-uppercase m-b-20">Overall Revenue</h6>
+                        <h2 class="m-b-20"><span data-plugin="counterup"><?php echo $paid_orders; ?></span></h2>
                     </div>
                 </div>
 
