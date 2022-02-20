@@ -175,9 +175,9 @@ require_once('partials/head.php');
                 <div class="col-sm-12">
                     <div class="page-title-box">
                         <div class="btn-group float-right m-t-15">
-                            <button type="button" data-toggle="modal" data-target="#add_modal" class="btn btn-primary"> Register New Product</button>
+                            <button type="button" data-toggle="modal" data-target="#add_modal" class="btn btn-primary"> Register Orders</button>
                         </div>
-                        <h4 class="page-title">Poultry Farm Products</h4>
+                        <h4 class="page-title">Poultry Farm Products Orders</h4>
                     </div>
                 </div>
             </div>
@@ -188,7 +188,7 @@ require_once('partials/head.php');
                     <div class="modal-content">
                         <div class="modal-header align-items-center">
                             <div class="modal-title">
-                                <h6 class="mb-0">Register New Product</h6>
+                                <h6 class="mb-0">Register New Product Order</h6>
                             </div>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
@@ -197,25 +197,45 @@ require_once('partials/head.php');
                         <div class="modal-body">
                             <form method="post" enctype="multipart/form-data" role="form">
                                 <div class="row">
-                                    <div class="form-group col-md-6">
-                                        <label for="">Product Name</label>
-                                        <input type="text" required name="product_name" class="form-control" id="exampleInputEmail1">
-                                    </div>
-                                    <div class="form-group col-md-3">
-                                        <label for="">Product Quantity</label>
-                                        <input type="number" required name="product_qty" class="form-control" id="exampleInputEmail1">
-                                    </div>
-                                    <div class="form-group col-md-3">
-                                        <label for="">Unit Price (KSH)</label>
-                                        <input type="number" required name="product_price" class="form-control" id="exampleInputEmail1">
-                                    </div>
                                     <div class="form-group col-md-12">
                                         <label for="">Product Details</label>
-                                        <textarea type="text" name="product_desc" rows="5" class="form-control" id="exampleInputEmail1"></textarea>
+                                        <select type="text" required name="order_product_id" class="form-control" id="exampleInputEmail1">
+                                            <option>Select Product</option>
+                                            <?php
+                                            $ret = "SELECT * FROM products 
+                                            ORDER BY product_name ASC ";
+                                            $stmt = $mysqli->prepare($ret);
+                                            $stmt->execute(); //ok
+                                            $res = $stmt->get_result();
+                                            while ($products = $res->fetch_object()) {
+                                            ?>
+                                                <option value="<?php echo $products->product_id; ?>"><?php echo $products->product_code . ' ' . $products->product_name; ?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="">Customer Details</label>
+                                        <select type="text" required name="order_supplier_id" class="form-control" id="exampleInputEmail1">
+                                            <option>Select Customer</option>
+                                            <?php
+                                            $ret = "SELECT * FROM users WHERE user_access_level = 'customer' 
+                                            ORDER BY user_name ASC ";
+                                            $stmt = $mysqli->prepare($ret);
+                                            $stmt->execute(); //ok
+                                            $res = $stmt->get_result();
+                                            while ($cus = $res->fetch_object()) {
+                                            ?>
+                                                <option value="<?php echo $cus->user_id; ?>"><?php echo $cus->user_name; ?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="">Order Qty</label>
+                                        <input type="number" required name="order_qty" class="form-control" id="exampleInputEmail1">
                                     </div>
                                 </div>
                                 <div class="text-right">
-                                    <button type="submit" name="add_product" class="btn btn-primary">Register Product</button>
+                                    <button type="submit" name="add_order" class="btn btn-primary">Register New Order</button>
                                 </div>
                             </form>
                         </div>
