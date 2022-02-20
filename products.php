@@ -207,67 +207,54 @@ require_once('partials/head.php');
                         <table id="dt" class="table table-bordered mb-0">
                             <thead>
                                 <tr>
-                                    <th>Full Name</th>
-                                    <th>Email</th>
-                                    <th>Phone No</th>
+                                    <th>Code</th>
+                                    <th>Name</th>
+                                    <th>Qty</th>
+                                    <th>Unit Price</th>
+                                    <th>Details</th>
                                     <th>Manage</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
-                                $ret = "SELECT * FROM users WHERE user_access_level = 'customer'";
+                                $ret = "SELECT * FROM products ";
                                 $stmt = $mysqli->prepare($ret);
                                 $stmt->execute(); //ok
                                 $res = $stmt->get_result();
-                                while ($staff = $res->fetch_object()) {
+                                while ($products = $res->fetch_object()) {
                                 ?>
                                     <tr>
                                         <td>
-                                            <?php echo $staff->user_name; ?>
+                                            <?php echo $products->product_code; ?>
                                         </td>
                                         <td>
-                                            <?php echo $staff->user_email; ?>
+                                            <?php echo $products->product_name; ?>
                                         </td>
                                         <td>
-                                            <?php echo $staff->user_phone_no; ?>
+                                            <?php echo $products->product_qty; ?>
                                         </td>
                                         <td>
-                                            <a data-toggle="modal" href="#update_<?php echo $staff->user_id; ?>" class="badge badge-primary"><i class="fa fa-edit"></i> Edit</a>
-                                            <a data-toggle="modal" href="#delete_<?php echo $staff->user_id; ?>" class="badge badge-danger"><i class="fa fa-trash"></i> Delete</a>
+                                            Ksh <?php echo number_format($products->product_price, 2); ?>
+                                        </td>
+                                        <td><?php echo $products->product_desc; ?></td>
+                                        <td>
+                                            <a data-toggle="modal" href="#update_<?php echo $products->product_id; ?>" class="badge badge-primary"><i class="fa fa-edit"></i> Edit</a>
+                                            <a data-toggle="modal" href="#delete_<?php echo $products->product_id; ?>" class="badge badge-danger"><i class="fa fa-trash"></i> Delete</a>
                                         </td>
                                         <!-- Update Modal -->
-                                        <div class="modal fade fixed-right" id="update_<?php echo $staff->user_id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                        <div class="modal fade fixed-right" id="update_<?php echo $products->product_id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                                             <div class="modal-dialog  modal-xl" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header align-items-center">
                                                         <div class="modal-title">
-                                                            <h6 class="mb-0">Update <?php echo $staff->user_name; ?></h6>
+                                                            <h6 class="mb-0">Update <?php echo $products->product_name; ?></h6>
                                                         </div>
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <form method="post" enctype="multipart/form-data" role="form">
-                                                            <div class="row">
-                                                                <div class="form-group col-md-12">
-                                                                    <label for="">Full Name</label>
-                                                                    <input type="text" required name="user_name" value="<?php echo $staff->user_name; ?>" class="form-control" id="exampleInputEmail1">
-                                                                    <input type="hidden" required name="user_id" value="<?php echo $staff->user_id; ?>" class="form-control" id="exampleInputEmail1">
-                                                                </div>
-                                                                <div class="form-group col-md-6">
-                                                                    <label for="">Phone Number</label>
-                                                                    <input type="text" required name="user_phone_no" value="<?php echo $staff->user_phone_no; ?>" class="form-control" id="exampleInputEmail1">
-                                                                </div>
-                                                                <div class="form-group col-md-6">
-                                                                    <label for="">Email Address</label>
-                                                                    <input type="text" name="user_email" value="<?php echo $staff->user_email; ?>" class="form-control" id="exampleInputEmail1">
-                                                                </div>
-                                                            </div>
-                                                            <div class="text-right">
-                                                                <button type="submit" name="update_staff" class="btn btn-primary">Update Customer</button>
-                                                            </div>
-                                                        </form>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -275,7 +262,7 @@ require_once('partials/head.php');
                                         <!-- End Modal -->
 
                                         <!-- Delete Modal -->
-                                        <div class="modal fade" id="delete_<?php echo $staff->user_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal fade" id="delete_<?php echo $products->product_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -286,12 +273,12 @@ require_once('partials/head.php');
                                                     </div>
                                                     <form method="POST">
                                                         <div class="modal-body text-center text-danger">
-                                                            <h4>Delete <?php echo $staff->user_name; ?> </h4>
+                                                            <h4>Delete <?php echo $products->product_name; ?> </h4>
                                                             <br>
                                                             <!-- Hide This -->
-                                                            <input type="hidden" name="user_id" value="<?php echo $staff->user_id; ?>">
+                                                            <input type="hidden" name="product_code" value="<?php echo $products->product_code; ?>">
                                                             <button type="button" class="text-center btn btn-success" data-dismiss="modal">No</button>
-                                                            <input type="submit" name="delete_staff" value="Delete" class="text-center btn btn-danger">
+                                                            <input type="submit" name="delete_product" value="Delete" class="text-center btn btn-danger">
                                                         </div>
                                                     </form>
                                                 </div>
