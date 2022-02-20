@@ -254,7 +254,30 @@ require_once('partials/head.php');
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-
+                                                        <form method="post" enctype="multipart/form-data" role="form">
+                                                            <div class="row">
+                                                                <div class="form-group col-md-6">
+                                                                    <label for="">Product Name</label>
+                                                                    <input type="text" required value="<?php echo $products->product_name; ?>" name="product_name" class="form-control" id="exampleInputEmail1">
+                                                                    <input type="hidden" required value="<?php echo $products->product_code; ?>" name="product_code" class="form-control" id="exampleInputEmail1">
+                                                                </div>
+                                                                <div class="form-group col-md-3">
+                                                                    <label for="">Product Quantity</label>
+                                                                    <input type="number" required value="<?php echo $products->product_qty; ?>" name="product_qty" class="form-control" id="exampleInputEmail1">
+                                                                </div>
+                                                                <div class="form-group col-md-3">
+                                                                    <label for="">Unit Price (KSH)</label>
+                                                                    <input type="number" required value="<?php echo $products->product_price; ?>" name="product_price" class="form-control" id="exampleInputEmail1">
+                                                                </div>
+                                                                <div class="form-group col-md-12">
+                                                                    <label for="">Product Details</label>
+                                                                    <textarea type="text" name="product_desc" rows="5" class="form-control" id="exampleInputEmail1">value="<?php echo $products->product_desc; ?>"</textarea>
+                                                                </div>
+                                                            </div>
+                                                            <div class="text-right">
+                                                                <button type="submit" name="add_product" class="btn btn-primary">Register Product</button>
+                                                            </div>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>
