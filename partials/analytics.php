@@ -76,19 +76,38 @@ $stmt->execute();
 $stmt->bind_result($products);
 $stmt->fetch();
 $stmt->close();
+/* Avoid Posting Null Values */
+if (!empty($products)) {
+    $products = $products;
+} else {
+    $products = 0;
+}
 
-/* 3. Suppliers */
-$query = "SELECT COUNT(*)  FROM users WHERE user_access_level = 'supplier' ";
+
+/* 3. Incomes */
+$query = "SELECT SUM(order_amount) FROM orders WHERE order_status = 'paid' ";
 $stmt = $mysqli->prepare($query);
 $stmt->execute();
-$stmt->bind_result($suppliers);
+$stmt->bind_result($paid_orders);
 $stmt->fetch();
 $stmt->close();
+/* Avoid Posting Null Values */
+if (!empty($paid_orders)) {
+    $paid_orders = $paid_orders;
+} else {
+    $paid_orders = 0;
+}
 
-/* 4. Customers */
-$query = "SELECT COUNT(*)  FROM users WHERE user_access_level = 'customer' ";
+/* 4. Unpaid Orders */
+$query = "SELECT SUM(order_amount) FROM orders WHERE order_status = 'pending' ";
 $stmt = $mysqli->prepare($query);
 $stmt->execute();
-$stmt->bind_result($customers);
+$stmt->bind_result($unpaid_orders);
 $stmt->fetch();
 $stmt->close();
+/* Avoid Posting Null Values */
+if (!empty($unpaid_orders)) {
+    $unpaid_orders = $unpaid_orders;
+} else {
+    $unpaid_orders = 0;
+}

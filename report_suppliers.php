@@ -1,6 +1,6 @@
 <?php
 /*
- * Created on Sat Feb 19 2022
+ * Created on Sun Feb 20 2022
  *
  *  Devlan Agency - devlan.co.ke 
  *
@@ -58,10 +58,12 @@
  * IN NO EVENT WILL DEVLAN  LIABILITY FOR ANY CLAIM, WHETHER IN CONTRACT 
  * TORT OR ANY OTHER THEORY OF LIABILITY, EXCEED THE LICENSE FEE PAID BY YOU, IF ANY.
  */
+
 session_start();
 require_once 'config/config.php';
 require_once 'config/codeGen.php';
-require_once 'partials/analytics.php';
+
+
 /* Load Header Partial */
 require_once('partials/head.php');
 ?>
@@ -71,8 +73,6 @@ require_once('partials/head.php');
     <!-- Navigation Bar-->
     <?php require_once('partials/navbar.php'); ?>
     <!-- End Navigation Bar-->
-
-
 
     <!-- ============================================================== -->
     <!-- Start right Content here -->
@@ -84,91 +84,39 @@ require_once('partials/head.php');
             <div class="row">
                 <div class="col-sm-12">
                     <div class="page-title-box">
-                        <h4 class="page-title">Dashboard</h4>
+                        <h4 class="page-title">Suppliers</h4>
                     </div>
                 </div>
             </div>
-
-
-            <div class="row">
-                <div class="col-md-6 col-xl-3">
-                    <div class="card-box tilebox-one">
-                        <i class="icon-layers float-right text-muted"></i>
-                        <h6 class="text-muted text-uppercase m-b-20">Orders</h6>
-                        <h2 class="m-b-20" data-plugin="counterup"><?php echo $orders; ?></h2>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-xl-3">
-                    <div class="card-box tilebox-one">
-                        <i class="icon-paypal float-right text-muted"></i>
-                        <h6 class="text-muted text-uppercase m-b-20">Poultry Products</h6>
-                        <h2 class="m-b-20"><span data-plugin="counterup"><?php echo $products; ?></span></h2>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-xl-3">
-                    <div class="card-box tilebox-one">
-                        <i class="icon-rocket float-right text-muted"></i>
-                        <h6 class="text-muted text-uppercase m-b-20">Pending Order Payments</h6>
-                        <h2 class="m-b-20" data-plugin="counterup">Ksh <?php echo number_format($unpaid_orders, 2); ?></h2>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-xl-3">
-                    <div class="card-box tilebox-one">
-                        <i class="icon-chart float-right text-muted"></i>
-                        <h6 class="text-muted text-uppercase m-b-20">Overall Revenue</h6>
-                        <h2 class="m-b-20"><span data-plugin="counterup">Ksh <?php echo  number_format($paid_orders, 2); ?></span></h2>
-                    </div>
-                </div>
-            </div>
-            <!-- end row -->
-
-
+            <!-- Add User MOdal -->
             <div class="row">
                 <div class="col-lg-12 col-xl-12">
                     <div class="card-box">
-                        <h4 class="header-title m-t-0 m-b-20">Recent Orders</h4>
                         <table id="datatable-buttons" class="table table-bordered mb-0">
                             <thead>
                                 <tr>
-                                    <th>Product Details</th>
-                                    <th>Supplier</th>
-                                    <th>Order Details</th>
-                                    <th>Order Status</th>
+                                    <th>Full Name</th>
+                                    <th>Email</th>
+                                    <th>Phone No</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
-                                $ret = "SELECT * FROM orders o
-                                INNER JOIN users u ON o.order_supplier_id = u.user_id
-                                INNER JOIN products p ON p.product_id = o.order_product_id
-                                ";
+                                $ret = "SELECT * FROM users WHERE user_access_level = 'supplier'";
                                 $stmt = $mysqli->prepare($ret);
                                 $stmt->execute(); //ok
                                 $res = $stmt->get_result();
-                                while ($orders = $res->fetch_object()) {
+                                while ($staff = $res->fetch_object()) {
                                 ?>
                                     <tr>
-                                        <th>
-                                            <?php echo $orders->product_code . ' ' . $orders->product_name; ?>
-                                        </th>
-                                        <td>Name: <?php echo $orders->user_name; ?> <br>
-                                            Phone : <?php echo $orders->user_phone_no; ?>
+                                        <td>
+                                            <?php echo $staff->user_name; ?>
                                         </td>
                                         <td>
-                                            Order # : <?php echo $orders->order_number; ?><br>
-                                            Order QTY: <?php echo $orders->order_qty; ?><br>
-                                            Payment Amt: Ksh <?php echo number_format($orders->order_amount, 2); ?><br>
-                                            Date: <?php echo $orders->order_date; ?>
+                                            <?php echo $staff->user_email; ?>
                                         </td>
                                         <td>
-                                            <?php if ($orders->order_status == 'paid') { ?>
-                                                <span class="badge badge-success">Paid</span>
-                                            <?php } else { ?>
-                                                <span class="badge badge-danger">Pending</span>
-                                            <?php } ?>
+                                            <?php echo $staff->user_phone_no; ?>
                                         </td>
                                     </tr>
                                 <?php } ?>
@@ -185,15 +133,9 @@ require_once('partials/head.php');
         <?php require_once('partials/footer.php'); ?>
         <!-- End Footer -->
 
-
-
-
-
     </div> <!-- End wrapper -->
 
-
     <?php require_once('partials/scripts.php'); ?>
-
 </body>
 
 </html>
