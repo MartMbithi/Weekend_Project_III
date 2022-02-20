@@ -68,30 +68,39 @@ if (isset($_POST['add_order'])) {
     $order_number = $b . $a;
     $order_supplier_id = $_POST['order_supplier_id'];
     $order_qty = $_POST['order_qty'];
-    $order_amount = $_POST['order_amount'];
     $order_product_id = $_POST['order_product_id'];
     $order_date = date('d M Y');
     $order_status = 'pending';
 
-    /* Persist */
-    $sql = "INSERT INTO orders (order_number, order_supplier_id, order_qty, order_amount, order_product_id, order_date, order_status)
-    VALUES(?,?,?,?,?,?,?)";
-    $prepare = $mysqli->prepare($sql);
-    $bind = $prepare->bind_param(
-        'sssssss',
-        $order_number,
-        $order_supplier_id,
-        $order_qty,
-        $order_amount,
-        $order_product_id,
-        $order_date,
-        $order_status
-    );
-    $prepare->execute();
-    if ($prepare) {
-        $success = "Order # $order_number Posted";
+    /* Get The Order Product */
+    $sql = "SELECT * FROM  products WHERE product_id = '$order_product_id'";
+    $res = mysqli_query($mysqli, $sql);
+    if (mysqli_num_rows($res) > 0) {
+        $product = mysqli_fetch_assoc($res); {
+            $order_payable_price = $product['product_price'] * $order_qty;
+            /* Persist */
+            $sql = "INSERT INTO orders (order_number, order_supplier_id, order_qty, order_amount, order_product_id, order_date, order_status)
+            VALUES(?,?,?,?,?,?,?)";
+            $prepare = $mysqli->prepare($sql);
+            $bind = $prepare->bind_param(
+                'sssssss',
+                $order_number,
+                $order_supplier_id,
+                $order_qty,
+                $order_payable_price,
+                $order_product_id,
+                $order_date,
+                $order_status
+            );
+            $prepare->execute();
+            if ($prepare) {
+                $success = "Order # $order_number Posted";
+            } else {
+                $err = "Failed!, Please Try Again Later";
+            }
+        }
     } else {
-        $err = "Failed!, Please Try Again Later";
+        $err = "Product Does Not Exist";
     }
 }
 
