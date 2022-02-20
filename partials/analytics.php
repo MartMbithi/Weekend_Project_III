@@ -98,10 +98,16 @@ if (!empty($paid_orders)) {
     $paid_orders = 0;
 }
 
-/* 4. Customers */
-$query = "SELECT COUNT(*)  FROM users WHERE user_access_level = 'customer' ";
+/* 4. Unpaid Orders */
+$query = "SELECT SUM(order_amount) FROM orders WHERE order_status = 'pending' ";
 $stmt = $mysqli->prepare($query);
 $stmt->execute();
-$stmt->bind_result($customers);
+$stmt->bind_result($unpaid_orders);
 $stmt->fetch();
 $stmt->close();
+/* Avoid Posting Null Values */
+if (!empty($unpaid_orders)) {
+    $unpaid_orders = $unpaid_orders;
+} else {
+    $unpaid_orders = 0;
+}

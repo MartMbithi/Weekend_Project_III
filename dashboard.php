@@ -109,17 +109,17 @@ require_once('partials/head.php');
 
                 <div class="col-md-6 col-xl-3">
                     <div class="card-box tilebox-one">
-                        <i class="icon-chart float-right text-muted"></i>
-                        <h6 class="text-muted text-uppercase m-b-20">Overall Revenue</h6>
-                        <h2 class="m-b-20"><span data-plugin="counterup"><?php echo $paid_orders; ?></span></h2>
+                        <i class="icon-rocket float-right text-muted"></i>
+                        <h6 class="text-muted text-uppercase m-b-20">Pending Order Payments</h6>
+                        <h2 class="m-b-20" data-plugin="counterup">Ksh <?php echo $unpaid_orders; ?></h2>
                     </div>
                 </div>
 
                 <div class="col-md-6 col-xl-3">
                     <div class="card-box tilebox-one">
-                        <i class="icon-rocket float-right text-muted"></i>
-                        <h6 class="text-muted text-uppercase m-b-20">Customers</h6>
-                        <h2 class="m-b-20" data-plugin="counterup"><?php echo $customers; ?></h2>
+                        <i class="icon-chart float-right text-muted"></i>
+                        <h6 class="text-muted text-uppercase m-b-20">Overall Revenue</h6>
+                        <h2 class="m-b-20"><span data-plugin="counterup">Ksh <?php echo $paid_orders; ?></span></h2>
                     </div>
                 </div>
             </div>
@@ -142,9 +142,9 @@ require_once('partials/head.php');
                             <tbody>
                                 <?php
                                 $ret = "SELECT * FROM orders o
-                                    INNER JOIN users u ON o.order_supplier_id = u.user_id
-                                    INNER JOIN products p ON p.product_id = o.order_product_id
-                                    ";
+                                INNER JOIN users u ON o.order_supplier_id = u.user_id
+                                INNER JOIN products p ON p.product_id = o.order_product_id
+                                ";
                                 $stmt = $mysqli->prepare($ret);
                                 $stmt->execute(); //ok
                                 $res = $stmt->get_result();
@@ -163,8 +163,8 @@ require_once('partials/head.php');
                                             Date: <?php echo $orders->order_date; ?>
                                         </td>
                                         <td>
-                                            <?php if ($ordes->order_status = 'Delivered') { ?>
-                                                <span class="badge badge-success">Delivered</span>
+                                            <?php if ($ordes->order_status = 'paid') { ?>
+                                                <span class="badge badge-success">Paid</span>
                                             <?php } else { ?>
                                                 <span class="badge badge-danger">Pending</span>
                                             <?php } ?>
