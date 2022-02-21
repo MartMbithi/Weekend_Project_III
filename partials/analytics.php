@@ -121,4 +121,41 @@ if ($user_access_level == 'staff') {
     /* Load Customer Analytics Here */
 } else {
     /* Load Supplier Analytics Here */
+    /* 1 . Orders */
+    $query = "SELECT COUNT(*)  FROM orders WHERE order_supplier_id = '$user_id' ";
+    $stmt = $mysqli->prepare($query);
+    $stmt->execute();
+    $stmt->bind_result($orders);
+    $stmt->fetch();
+    $stmt->close();
+
+
+
+    /* 3. Incomes */
+    $query = "SELECT SUM(order_amount) FROM orders WHERE order_status = 'paid' AND order_supplier_id = '$user_id' ";
+    $stmt = $mysqli->prepare($query);
+    $stmt->execute();
+    $stmt->bind_result($paid_orders);
+    $stmt->fetch();
+    $stmt->close();
+    /* Avoid Posting Null Values */
+    if (!empty($paid_orders)) {
+        $paid_orders = $paid_orders;
+    } else {
+        $paid_orders = 0;
+    }
+
+    /* 4. Unpaid Orders */
+    $query = "SELECT SUM(order_amount) FROM orders WHERE order_status = 'pending' AND order_supplier_id = '$user_id' ";
+    $stmt = $mysqli->prepare($query);
+    $stmt->execute();
+    $stmt->bind_result($unpaid_orders);
+    $stmt->fetch();
+    $stmt->close();
+    /* Avoid Posting Null Values */
+    if (!empty($unpaid_orders)) {
+        $unpaid_orders = $unpaid_orders;
+    } else {
+        $unpaid_orders = 0;
+    }
 }
