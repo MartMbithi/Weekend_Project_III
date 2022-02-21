@@ -123,21 +123,21 @@ require_once('partials/head.php');
                 </div>
                 <div class="col-md-6 col-xl-4">
                     <div class="card-box tilebox-one">
-                        <i class="icon-rocket float-right text-muted"></i>
+                        <i class="fa fa-calendar-times-o float-right text-muted"></i>
                         <h6 class="text-muted text-uppercase m-b-20">Pending Purchase Payments</h6>
                         <h2 class="m-b-20" data-plugin="counterup">Ksh <?php echo number_format($unpaid_orders, 2); ?></h2>
                     </div>
                 </div>
                 <div class="col-md-6 col-xl-4">
                     <div class="card-box tilebox-one">
-                        <i class="icon-rocket float-right text-muted"></i>
+                        <i class="fa fa-calendar-times-o float-right text-muted"></i>
                         <h6 class="text-muted text-uppercase m-b-20">Pending Supply Orders Payments</h6>
                         <h2 class="m-b-20" data-plugin="counterup">Ksh <?php echo number_format($supplies_orders, 2); ?></h2>
                     </div>
                 </div>
                 <div class="col-md-6 col-xl-4">
                     <div class="card-box tilebox-one">
-                        <i class="icon-rocket float-right text-muted"></i>
+                        <i class="fa fa-minus-circle float-right text-muted"></i>
                         <h6 class="text-muted text-uppercase m-b-20">Expenses</h6>
                         <h2 class="m-b-20" data-plugin="counterup">Ksh <?php echo number_format($expenditure, 2); ?></h2>
                     </div>
@@ -145,7 +145,7 @@ require_once('partials/head.php');
 
                 <div class="col-md-6 col-xl-4">
                     <div class="card-box tilebox-one">
-                        <i class="icon-chart float-right text-muted"></i>
+                        <i class="fa fa-money float-right text-muted"></i>
                         <h6 class="text-muted text-uppercase m-b-20">Overall Revenue</h6>
                         <h2 class="m-b-20"><span data-plugin="counterup">Ksh <?php echo  number_format($revenue, 2); ?></span></h2>
                     </div>
@@ -154,7 +154,7 @@ require_once('partials/head.php');
                     $profit = $revenue - $expenditure ?>
                     <div class="col-md-6 col-xl-4 text-success">
                         <div class="card-box tilebox-one">
-                            <i class="icon-chart float-right text-muted"></i>
+                            <i class="fa fa-line-chart float-right text-muted"></i>
                             <h6 class="text-success text-uppercase m-b-20">Overall Profit</h6>
                             <h2 class="m-b-20"><span data-plugin="counterup">Ksh <?php echo  number_format($profit, 2); ?></span></h2>
                         </div>
@@ -163,7 +163,7 @@ require_once('partials/head.php');
                     $loss = $expenditure - $revenue ?>
                     <div class="col-md-6 col-xl-4 text-danger">
                         <div class="card-box tilebox-one">
-                            <i class="icon-chart float-right text-muted"></i>
+                            <i class="fa fa-fa fa-exclamation-triangle float-right text-muted"></i>
                             <h6 class="text-danger text-uppercase m-b-20">Overall Loss</h6>
                             <h2 class="m-b-20"><span data-plugin="counterup">Ksh <?php echo  number_format($loss, 2); ?></span></h2>
                         </div>
