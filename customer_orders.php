@@ -71,6 +71,7 @@ if (isset($_POST['add_order'])) {
     $order_product_id = $_POST['order_product_id'];
     $order_date = date('d M Y');
     $order_status = 'pending';
+    $order_type = 'purchase';
 
     /* Get The Order Product */
     $sql = "SELECT * FROM  products WHERE product_id = '$order_product_id'";
@@ -79,22 +80,23 @@ if (isset($_POST['add_order'])) {
         $product = mysqli_fetch_assoc($res); {
             $order_payable_price = $product['product_price'] * $order_qty;
             /* Persist */
-            $sql = "INSERT INTO orders (order_number, order_supplier_id, order_qty, order_amount, order_product_id, order_date, order_status)
-            VALUES(?,?,?,?,?,?,?)";
+            $sql = "INSERT INTO orders (order_number, order_supplier_id, order_qty, order_amount, order_product_id, order_date, order_status, order_type)
+            VALUES(?,?,?,?,?,?,?,?)";
             $prepare = $mysqli->prepare($sql);
             $bind = $prepare->bind_param(
-                'sssssss',
+                'ssssssss',
                 $order_number,
                 $order_supplier_id,
                 $order_qty,
                 $order_payable_price,
                 $order_product_id,
                 $order_date,
-                $order_status
+                $order_status,
+                $order_type
             );
             $prepare->execute();
             if ($prepare) {
-                $success = "Order # $order_number Posted";
+                $success = "Purchase Order # $order_number Posted";
             } else {
                 $err = "Failed!, Please Try Again Later";
             }
@@ -129,7 +131,7 @@ if (isset($_POST['update_order'])) {
             );
             $prepare->execute();
             if ($prepare) {
-                $success = "Order # $order_number Updated";
+                $success = "Purchase Order # $order_number Updated";
             } else {
                 $err = "Failed!, Please Try Again Later";
             }
@@ -166,7 +168,7 @@ if (isset($_POST['pay_order'])) {
     $bind = $prepare->bind_param('ss', $order_status, $order_id);
     $prepare->execute();
     if ($prepare) {
-        $success = "Order Marked As Paid";
+        $success = "Purchase Order Marked As Paid";
     } else {
         $err = "Failed!, Please Try Again Later";
     }
@@ -194,9 +196,9 @@ require_once('partials/head.php');
                 <div class="col-sm-12">
                     <div class="page-title-box">
                         <div class="btn-group float-right m-t-15">
-                            <button type="button" data-toggle="modal" data-target="#add_modal" class="btn btn-primary"> Register Orders</button>
+                            <button type="button" data-toggle="modal" data-target="#add_modal" class="btn btn-primary"> Register Purchase Order</button>
                         </div>
-                        <h4 class="page-title">Poultry Farm Products Orders</h4>
+                        <h4 class="page-title">Poultry Farm Products Purchase Orders</h4>
                     </div>
                 </div>
             </div>
