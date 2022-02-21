@@ -1,6 +1,6 @@
 <?php
 /*
- * Created on Sun Feb 20 2022
+ * Created on Mon Feb 21 2022
  *
  *  Devlan Agency - devlan.co.ke 
  *
@@ -59,6 +59,7 @@
  * TORT OR ANY OTHER THEORY OF LIABILITY, EXCEED THE LICENSE FEE PAID BY YOU, IF ANY.
  */
 
+
 session_start();
 require_once 'config/config.php';
 require_once 'config/codeGen.php';
@@ -85,7 +86,7 @@ require_once('partials/head.php');
             <div class="row">
                 <div class="col-sm-12">
                     <div class="page-title-box">
-                        <h4 class="page-title">Poultry Farm Products Purchase Orders</h4>
+                        <h4 class="page-title">My Requested Supply Orders</h4>
                     </div>
                 </div>
             </div>
@@ -98,18 +99,19 @@ require_once('partials/head.php');
                                 <tr>
                                     <th>Order Number</th>
                                     <th>Product</th>
-                                    <th>Customer</th>
+                                    <th>Supplier</th>
                                     <th>Qty Ordered</th>
                                     <th>Date Posted</th>
-                                    <th>Cost</th>
+                                    <th>Order Cost</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
+                                $user_id = $_SESSION['user_id'];
                                 $ret = "SELECT * FROM orders o
                                 INNER JOIN products p ON p.product_id = o.order_product_id
                                 INNER JOIN users u ON u.user_id = o.order_supplier_id
-                                WHERE order_type = 'purchase'";
+                                WHERE order_type = 'supply' AND user_id = '$user_id'";
                                 $stmt = $mysqli->prepare($ret);
                                 $stmt->execute(); //ok
                                 $res = $stmt->get_result();

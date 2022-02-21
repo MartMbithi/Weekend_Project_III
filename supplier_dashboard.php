@@ -1,6 +1,6 @@
 <?php
 /*
- * Created on Sun Feb 20 2022
+ * Created on Sat Feb 19 2022
  *
  *  Devlan Agency - devlan.co.ke 
  *
@@ -58,13 +58,13 @@
  * IN NO EVENT WILL DEVLAN  LIABILITY FOR ANY CLAIM, WHETHER IN CONTRACT 
  * TORT OR ANY OTHER THEORY OF LIABILITY, EXCEED THE LICENSE FEE PAID BY YOU, IF ANY.
  */
-
 session_start();
 require_once 'config/config.php';
 require_once 'config/codeGen.php';
-
+require_once 'partials/analytics.php';
 /* Load Header Partial */
 require_once('partials/head.php');
+$user_id = $_SESSION['user_id'];
 ?>
 
 <body>
@@ -85,59 +85,85 @@ require_once('partials/head.php');
             <div class="row">
                 <div class="col-sm-12">
                     <div class="page-title-box">
-                        <h4 class="page-title">Poultry Farm Products Purchase Orders</h4>
+                        <h4 class="page-title">Supplier Dashboard</h4>
                     </div>
                 </div>
             </div>
-            <!-- Add User MOdal -->
+
+
+            <div class="row">
+                <div class="col-md-6 col-xl-4">
+                    <div class="card-box tilebox-one">
+                        <i class="icon-layers float-right text-muted"></i>
+                        <h6 class="text-muted text-uppercase m-b-20">My Supply Orders</h6>
+                        <h2 class="m-b-20" data-plugin="counterup"><?php echo $orders; ?></h2>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-xl-4">
+                    <div class="card-box tilebox-one">
+                        <i class="icon-rocket float-right text-muted"></i>
+                        <h6 class="text-muted text-uppercase m-b-20">My Pending Order Payments</h6>
+                        <h2 class="m-b-20" data-plugin="counterup">Ksh <?php echo number_format($unpaid_orders, 2); ?></h2>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-xl-4">
+                    <div class="card-box tilebox-one">
+                        <i class="icon-chart float-right text-muted"></i>
+                        <h6 class="text-muted text-uppercase m-b-20">My Overall Revenue</h6>
+                        <h2 class="m-b-20"><span data-plugin="counterup">Ksh <?php echo  number_format($paid_orders, 2); ?></span></h2>
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+
+
             <div class="row">
                 <div class="col-lg-12 col-xl-12">
                     <div class="card-box">
+                        <h4 class="header-title m-t-0 m-b-20">My Recent Supply Orders</h4>
                         <table id="datatable-buttons" class="table table-bordered mb-0">
                             <thead>
                                 <tr>
-                                    <th>Order Number</th>
-                                    <th>Product</th>
-                                    <th>Customer</th>
-                                    <th>Qty Ordered</th>
-                                    <th>Date Posted</th>
-                                    <th>Cost</th>
+                                    <th>Product Details</th>
+                                    <th>Supplier</th>
+                                    <th>Order Details</th>
+                                    <th>Order Status</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
+
                                 $ret = "SELECT * FROM orders o
+                                INNER JOIN users u ON o.order_supplier_id = u.user_id
                                 INNER JOIN products p ON p.product_id = o.order_product_id
-                                INNER JOIN users u ON u.user_id = o.order_supplier_id
-                                WHERE order_type = 'purchase'";
+                                WHERE o.order_type = 'supply' AND o.order_supplier_id = '$user_id'
+                                ";
                                 $stmt = $mysqli->prepare($ret);
                                 $stmt->execute(); //ok
                                 $res = $stmt->get_result();
                                 while ($orders = $res->fetch_object()) {
                                 ?>
                                     <tr>
+                                        <th>
+                                            <?php echo $orders->product_code . ' ' . $orders->product_name; ?>
+                                        </th>
+                                        <td>Name: <?php echo $orders->user_name; ?> <br>
+                                            Phone : <?php echo $orders->user_phone_no; ?>
+                                        </td>
                                         <td>
-                                            <?php echo $orders->order_number; ?> <br>
+                                            Order # : <?php echo $orders->order_number; ?><br>
+                                            Order QTY: <?php echo $orders->order_qty; ?><br>
+                                            Payment Amt: Ksh <?php echo number_format($orders->order_amount, 2); ?><br>
+                                            Date: <?php echo $orders->order_date; ?>
+                                        </td>
+                                        <td>
                                             <?php if ($orders->order_status == 'paid') { ?>
-                                                <span class="badge badge-success"><i class="fa fa-check"></i> Paid</span>
+                                                <span class="badge badge-success">Paid</span>
                                             <?php } else { ?>
                                                 <span class="badge badge-danger">Pending</span>
                                             <?php } ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $orders->product_code . ' ' . $orders->product_name; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $orders->user_name; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $orders->order_qty; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $orders->order_date; ?>
-                                        </td>
-                                        <td>
-                                            Ksh <?php echo number_format($orders->order_amount, 2); ?>
                                         </td>
                                     </tr>
                                 <?php } ?>

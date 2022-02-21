@@ -106,10 +106,11 @@ require_once('partials/head.php');
                             </thead>
                             <tbody>
                                 <?php
+                                $user_id = $_SESSION['user_id'];
                                 $ret = "SELECT * FROM orders o
                                 INNER JOIN products p ON p.product_id = o.order_product_id
                                 INNER JOIN users u ON u.user_id = o.order_supplier_id
-                                WHERE order_type = 'purchase'";
+                                WHERE order_type = 'purchase' AND u.user_id = '$user_id'";
                                 $stmt = $mysqli->prepare($ret);
                                 $stmt->execute(); //ok
                                 $res = $stmt->get_result();

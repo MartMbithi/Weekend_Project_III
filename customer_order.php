@@ -66,12 +66,12 @@ require_once 'config/codeGen.php';
 /* Add Order */
 if (isset($_POST['add_order'])) {
     $order_number = $b . $a;
-    $order_supplier_id = $_POST['order_supplier_id'];
+    $order_supplier_id = $_SESSION['user_id'];
     $order_qty = $_POST['order_qty'];
     $order_product_id = $_POST['order_product_id'];
     $order_date = date('d M Y');
     $order_status = 'pending';
-    $order_type = 'supply';
+    $order_type = 'purchase';
 
     /* Get The Order Product */
     $sql = "SELECT * FROM  products WHERE product_id = '$order_product_id'";
@@ -96,7 +96,7 @@ if (isset($_POST['add_order'])) {
             );
             $prepare->execute();
             if ($prepare) {
-                $success = "Supply Order # $order_number Posted";
+                $success = "Purchase Order # $order_number Posted";
             } else {
                 $err = "Failed!, Please Try Again Later";
             }
@@ -131,7 +131,7 @@ if (isset($_POST['update_order'])) {
             );
             $prepare->execute();
             if ($prepare) {
-                $success = "Supply Order # $order_number Updated";
+                $success = "Purchase Order # $order_number Updated";
             } else {
                 $err = "Failed!, Please Try Again Later";
             }
@@ -151,28 +151,12 @@ if (isset($_POST['delete_order'])) {
     $bind = $prepare->bind_param('s', $order_id);
     $prepare->execute();
     if ($prepare) {
-        $success = "Order Deleted";
+        $success = "Purchase Order Cancelled";
     } else {
         $err = "Failed!, Please Try Again Later";
     }
 }
 
-/* Mark As Paid */
-if (isset($_POST['pay_order'])) {
-    $order_id = $_POST['order_id'];
-    $order_status = 'paid';
-
-    /* Persist */
-    $sql = "UPDATE orders SET order_status =? WHERE order_id =?";
-    $prepare = $mysqli->prepare($sql);
-    $bind = $prepare->bind_param('ss', $order_status, $order_id);
-    $prepare->execute();
-    if ($prepare) {
-        $success = "Supply Order Approved And Paid";
-    } else {
-        $err = "Failed!, Please Try Again Later";
-    }
-}
 /* Load Header Partial */
 require_once('partials/head.php');
 ?>
@@ -196,9 +180,9 @@ require_once('partials/head.php');
                 <div class="col-sm-12">
                     <div class="page-title-box">
                         <div class="btn-group float-right m-t-15">
-                            <button type="button" data-toggle="modal" data-target="#add_modal" class="btn btn-primary"> Register Supply Order</button>
+                            <button type="button" data-toggle="modal" data-target="#add_modal" class="btn btn-primary"> Register Purchase Order</button>
                         </div>
-                        <h4 class="page-title">Poultry Farm Products Supply Orders</h4>
+                        <h4 class="page-title">Poultry Farm Products Purchase Orders</h4>
                     </div>
                 </div>
             </div>
@@ -209,7 +193,7 @@ require_once('partials/head.php');
                     <div class="modal-content">
                         <div class="modal-header align-items-center">
                             <div class="modal-title">
-                                <h6 class="mb-0">Register New Product Order</h6>
+                                <h6 class="mb-0">Register New Purchase Order</h6>
                             </div>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
@@ -218,7 +202,7 @@ require_once('partials/head.php');
                         <div class="modal-body">
                             <form method="post" enctype="multipart/form-data" role="form">
                                 <div class="row">
-                                    <div class="form-group col-md-12">
+                                    <div class="form-group col-md-8">
                                         <label for="">Product Details</label>
                                         <select type="text" required name="order_product_id" class="form-control" id="exampleInputEmail1">
                                             <option>Select Product</option>
@@ -234,29 +218,14 @@ require_once('partials/head.php');
                                             <?php } ?>
                                         </select>
                                     </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="">Supplier Details</label>
-                                        <select type="text" required name="order_supplier_id" class="form-control" id="exampleInputEmail1">
-                                            <option>Select Supplier</option>
-                                            <?php
-                                            $ret = "SELECT * FROM users WHERE user_access_level = 'supplier' 
-                                            ORDER BY user_name ASC ";
-                                            $stmt = $mysqli->prepare($ret);
-                                            $stmt->execute(); //ok
-                                            $res = $stmt->get_result();
-                                            while ($cus = $res->fetch_object()) {
-                                            ?>
-                                                <option value="<?php echo $cus->user_id; ?>"><?php echo $cus->user_name; ?></option>
-                                            <?php } ?>
-                                        </select>
-                                    </div>
-                                    <div class="form-group col-md-6">
+
+                                    <div class="form-group col-md-4">
                                         <label for="">Order Qty</label>
                                         <input type="number" required name="order_qty" class="form-control" id="exampleInputEmail1">
                                     </div>
                                 </div>
                                 <div class="text-right">
-                                    <button type="submit" name="add_order" class="btn btn-primary">Register New Order Request</button>
+                                    <button type="submit" name="add_order" class="btn btn-primary">Register New Order</button>
                                 </div>
                             </form>
                         </div>
@@ -271,7 +240,6 @@ require_once('partials/head.php');
                                 <tr>
                                     <th>Order Number</th>
                                     <th>Product</th>
-                                    <th>Supplier</th>
                                     <th>Qty Ordered</th>
                                     <th>Date Posted</th>
                                     <th>Cost</th>
@@ -280,10 +248,11 @@ require_once('partials/head.php');
                             </thead>
                             <tbody>
                                 <?php
+                                $user_id = $_SESSION['user_id'];
                                 $ret = "SELECT * FROM orders o
                                 INNER JOIN products p ON p.product_id = o.order_product_id
                                 INNER JOIN users u ON u.user_id = o.order_supplier_id
-                                WHERE order_type = 'supply'";
+                                WHERE order_type = 'purchase' AND user_id = '$user_id'";
                                 $stmt = $mysqli->prepare($ret);
                                 $stmt->execute(); //ok
                                 $res = $stmt->get_result();
@@ -302,9 +271,6 @@ require_once('partials/head.php');
                                             <?php echo $orders->product_code . ' ' . $orders->product_name; ?>
                                         </td>
                                         <td>
-                                            <?php echo $orders->user_name; ?>
-                                        </td>
-                                        <td>
                                             <?php echo $orders->order_qty; ?>
                                         </td>
                                         <td>
@@ -315,35 +281,10 @@ require_once('partials/head.php');
                                         </td>
                                         <td>
                                             <?php if ($orders->order_status != 'paid') { ?>
-                                                <a data-toggle="modal" href="#pay_<?php echo $orders->order_id; ?>" class="badge badge-success"><i class="fa fa-check"></i> Approve Order</a>
                                                 <a data-toggle="modal" href="#update_<?php echo $orders->order_id; ?>" class="badge badge-primary"><i class="fa fa-edit"></i> Edit</a>
+                                                <a data-toggle="modal" href="#delete_<?php echo $orders->order_id; ?>" class="badge badge-danger"><i class="fa fa-trash"></i> Cancel</a>
                                             <?php } ?>
-                                            <a data-toggle="modal" href="#delete_<?php echo $orders->order_id; ?>" class="badge badge-danger"><i class="fa fa-trash"></i> Delete</a>
                                         </td>
-                                        <!-- Pay Order -->
-                                        <div class="modal fade" id="pay_<?php echo $orders->order_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">CONFIRM PAYMENT AND APPROVAL</h5>
-                                                        <button type="button" class="close" data-dismiss="modal">
-                                                            <span>&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <form method="POST">
-                                                        <div class="modal-body text-center text-success">
-                                                            <h4>Mark Order # <?php echo $orders->order_number; ?> As Approved And Paid? </h4>
-                                                            <br>
-                                                            <!-- Hide This -->
-                                                            <input type="hidden" name="order_id" value="<?php echo $orders->order_id; ?>">
-                                                            <button type="button" class="text-center btn btn-danger" data-dismiss="modal">No</button>
-                                                            <input type="submit" name="pay_order" value="Yes" class="text-center btn btn-success">
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- End Modal -->
 
                                         <!-- Update Modal -->
                                         <div class="modal fade fixed-right" id="update_<?php echo $orders->order_id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
@@ -386,19 +327,19 @@ require_once('partials/head.php');
                                             <div class="modal-dialog modal-dialog-centered" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">CONFIRM DELETE</h5>
+                                                        <h5 class="modal-title" id="exampleModalLabel">CANCEL ORDER</h5>
                                                         <button type="button" class="close" data-dismiss="modal">
                                                             <span>&times;</span>
                                                         </button>
                                                     </div>
                                                     <form method="POST">
                                                         <div class="modal-body text-center text-danger">
-                                                            <h4>Delete Order # <?php echo $orders->order_number; ?> </h4>
+                                                            <h4>Cancel Order # <?php echo $orders->order_number; ?> </h4>
                                                             <br>
                                                             <!-- Hide This -->
                                                             <input type="hidden" name="order_id" value="<?php echo $orders->order_id; ?>">
                                                             <button type="button" class="text-center btn btn-success" data-dismiss="modal">No</button>
-                                                            <input type="submit" name="delete_order" value="Delete" class="text-center btn btn-danger">
+                                                            <input type="submit" name="delete_order" value="Cancel" class="text-center btn btn-danger">
                                                         </div>
                                                     </form>
                                                 </div>

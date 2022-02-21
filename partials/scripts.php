@@ -44,6 +44,10 @@
 
         table.buttons().container().appendTo('#datatable-buttons_wrapper .col-md-6:eq(0)');
     });
+    /* Prevent Double Resubmissions */
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+    }
 </script>
 
 
@@ -59,6 +63,7 @@
             html: '<?php echo $success; ?>',
             timer: 2500,
             type: "success",
+            showConfirmButton: false,
             onBeforeOpen: () => {
                 timerInterval = setInterval(() => {
                     Swal.getContent().querySelector('strong')
@@ -83,6 +88,7 @@ if (isset($err)) { ?>
             html: '<?php echo $err; ?>',
             timer: 2500,
             type: "error",
+            showConfirmButton: false,
             onBeforeOpen: () => {
                 timerInterval = setInterval(() => {
                     Swal.getContent().querySelector('strong')
@@ -107,6 +113,7 @@ if (isset($info)) { ?>
             html: '<?php echo $info; ?>',
             timer: 2500,
             type: "info",
+            showConfirmButton: false,
             onBeforeOpen: () => {
                 timerInterval = setInterval(() => {
                     Swal.getContent().querySelector('strong')
