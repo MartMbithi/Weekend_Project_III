@@ -93,14 +93,14 @@ require_once('partials/head.php');
             <div class="row">
                 <div class="col-md-6 col-xl-4">
                     <div class="card-box tilebox-one">
-                        <i class="icon-layers float-right text-muted"></i>
+                        <i class="fa fa-users fa-3x float-right text-muted"></i>
                         <h6 class="text-muted text-uppercase m-b-20">Customers</h6>
                         <h2 class="m-b-20" data-plugin="counterup"><?php echo $customers; ?></h2>
                     </div>
                 </div>
                 <div class="col-md-6 col-xl-4">
                     <div class="card-box tilebox-one">
-                        <i class="icon-layers float-right text-muted"></i>
+                        <i class="fa fa-user-plus float-right text-muted"></i>
                         <h6 class="text-muted text-uppercase m-b-20">Suppliers</h6>
                         <h2 class="m-b-20" data-plugin="counterup"><?php echo $suppliers; ?></h2>
                     </div>
@@ -108,7 +108,7 @@ require_once('partials/head.php');
 
                 <div class="col-md-6 col-xl-4">
                     <div class="card-box tilebox-one">
-                        <i class="icon-paypal float-right text-muted"></i>
+                        <i class="fa fa-list float-right text-muted"></i>
                         <h6 class="text-muted text-uppercase m-b-20">Poultry Products Qty</h6>
                         <h2 class="m-b-20"><span data-plugin="counterup"><?php echo $products; ?></span></h2>
                     </div>
@@ -116,7 +116,7 @@ require_once('partials/head.php');
 
                 <div class="col-md-6 col-xl-4">
                     <div class="card-box tilebox-one">
-                        <i class="icon-paypal float-right text-muted"></i>
+                        <i class="fa fa-calendar-check-o float-right text-muted"></i>
                         <h6 class="text-muted text-uppercase m-b-20">Overall Orders</h6>
                         <h2 class="m-b-20"><span data-plugin="counterup"><?php echo $orders; ?></span></h2>
                     </div>
