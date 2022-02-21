@@ -235,9 +235,9 @@ require_once('partials/head.php');
                                         </select>
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="">Customer Details</label>
+                                        <label for="">Supplier Details</label>
                                         <select type="text" required name="order_supplier_id" class="form-control" id="exampleInputEmail1">
-                                            <option>Select Customer</option>
+                                            <option>Select Supplier</option>
                                             <?php
                                             $ret = "SELECT * FROM users WHERE user_access_level = 'supplier' 
                                             ORDER BY user_name ASC ";
@@ -256,7 +256,7 @@ require_once('partials/head.php');
                                     </div>
                                 </div>
                                 <div class="text-right">
-                                    <button type="submit" name="add_order" class="btn btn-primary">Register New Order</button>
+                                    <button type="submit" name="add_order" class="btn btn-primary">Register New Order Request</button>
                                 </div>
                             </form>
                         </div>
