@@ -180,7 +180,7 @@ require_once('partials/head.php');
                 <div class="col-sm-12">
                     <div class="page-title-box">
                         <div class="btn-group float-right m-t-15">
-                            <button type="button" data-toggle="modal" data-target="#add_modal" class="btn btn-primary"> Register Supply Order Request</button>
+                            <button type="button" data-toggle="modal" data-target="#add_modal" class="btn btn-primary"> Make Supply Order Request</button>
                         </div>
                         <h4 class="page-title">Poultry Farm Products Supply Orders Requests</h4>
                     </div>
