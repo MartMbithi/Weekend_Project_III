@@ -86,6 +86,7 @@ if (isset($_POST['Sign_Up'])) {
     if ($prepare) {
         $_SESSION['success'] = 'Account Created, Proceed To Login';
         header('Location: index');
+        exit;
     } else {
         $err  = "Failed!, Please Try Again";
     }
