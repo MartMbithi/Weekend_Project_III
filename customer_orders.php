@@ -71,7 +71,7 @@ if (isset($_POST['add_order'])) {
     $order_product_id = $_POST['order_product_id'];
     $order_date = date('d M Y');
     $order_status = 'pending';
-    $order_type = 'supply';
+    $order_type = 'purchase';
 
     /* Get The Order Product */
     $sql = "SELECT * FROM  products WHERE product_id = '$order_product_id'";
@@ -96,7 +96,7 @@ if (isset($_POST['add_order'])) {
             );
             $prepare->execute();
             if ($prepare) {
-                $success = "Supply Order # $order_number Posted";
+                $success = "Purchase Order # $order_number Posted";
             } else {
                 $err = "Failed!, Please Try Again Later";
             }
@@ -131,7 +131,7 @@ if (isset($_POST['update_order'])) {
             );
             $prepare->execute();
             if ($prepare) {
-                $success = "Supply Order # $order_number Updated";
+                $success = "Purchase Order # $order_number Updated";
             } else {
                 $err = "Failed!, Please Try Again Later";
             }
@@ -168,7 +168,7 @@ if (isset($_POST['pay_order'])) {
     $bind = $prepare->bind_param('ss', $order_status, $order_id);
     $prepare->execute();
     if ($prepare) {
-        $success = "Supply Order Marked As Paid";
+        $success = "Purchase Order Marked As Paid";
     } else {
         $err = "Failed!, Please Try Again Later";
     }
@@ -196,9 +196,9 @@ require_once('partials/head.php');
                 <div class="col-sm-12">
                     <div class="page-title-box">
                         <div class="btn-group float-right m-t-15">
-                            <button type="button" data-toggle="modal" data-target="#add_modal" class="btn btn-primary"> Register Supply Order</button>
+                            <button type="button" data-toggle="modal" data-target="#add_modal" class="btn btn-primary"> Register Purchase Order</button>
                         </div>
-                        <h4 class="page-title">Poultry Farm Products Supply Orders</h4>
+                        <h4 class="page-title">Poultry Farm Products Purchase Orders</h4>
                     </div>
                 </div>
             </div>
@@ -239,7 +239,7 @@ require_once('partials/head.php');
                                         <select type="text" required name="order_supplier_id" class="form-control" id="exampleInputEmail1">
                                             <option>Select Customer</option>
                                             <?php
-                                            $ret = "SELECT * FROM users WHERE user_access_level = 'supplier' 
+                                            $ret = "SELECT * FROM users WHERE user_access_level = 'customer' 
                                             ORDER BY user_name ASC ";
                                             $stmt = $mysqli->prepare($ret);
                                             $stmt->execute(); //ok
@@ -271,7 +271,7 @@ require_once('partials/head.php');
                                 <tr>
                                     <th>Order Number</th>
                                     <th>Product</th>
-                                    <th>Supplier</th>
+                                    <th>Customer</th>
                                     <th>Qty Ordered</th>
                                     <th>Date Posted</th>
                                     <th>Cost</th>
@@ -283,7 +283,7 @@ require_once('partials/head.php');
                                 $ret = "SELECT * FROM orders o
                                 INNER JOIN products p ON p.product_id = o.order_product_id
                                 INNER JOIN users u ON u.user_id = o.order_supplier_id
-                                WHERE order_type = 'supply'";
+                                WHERE order_type = 'purchase'";
                                 $stmt = $mysqli->prepare($ret);
                                 $stmt->execute(); //ok
                                 $res = $stmt->get_result();
@@ -315,7 +315,7 @@ require_once('partials/head.php');
                                         </td>
                                         <td>
                                             <?php if ($orders->order_status != 'paid') { ?>
-                                                <a data-toggle="modal" href="#pay_<?php echo $orders->order_id; ?>" class="badge badge-success"><i class="fa fa-check"></i> Approve Order</a>
+                                                <a data-toggle="modal" href="#pay_<?php echo $orders->order_id; ?>" class="badge badge-success"><i class="fa fa-check"></i> Mark Paid</a>
                                                 <a data-toggle="modal" href="#update_<?php echo $orders->order_id; ?>" class="badge badge-primary"><i class="fa fa-edit"></i> Edit</a>
                                             <?php } ?>
                                             <a data-toggle="modal" href="#delete_<?php echo $orders->order_id; ?>" class="badge badge-danger"><i class="fa fa-trash"></i> Delete</a>
@@ -325,14 +325,14 @@ require_once('partials/head.php');
                                             <div class="modal-dialog modal-dialog-centered" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">CONFIRM PAYMENT AND APPROVAL</h5>
+                                                        <h5 class="modal-title" id="exampleModalLabel">CONFIRM PAYMENT</h5>
                                                         <button type="button" class="close" data-dismiss="modal">
                                                             <span>&times;</span>
                                                         </button>
                                                     </div>
                                                     <form method="POST">
                                                         <div class="modal-body text-center text-success">
-                                                            <h4>Mark Order # <?php echo $orders->order_number; ?> As Approved And Paid? </h4>
+                                                            <h4>Mark Order # <?php echo $orders->order_number; ?> As Paid? </h4>
                                                             <br>
                                                             <!-- Hide This -->
                                                             <input type="hidden" name="order_id" value="<?php echo $orders->order_id; ?>">

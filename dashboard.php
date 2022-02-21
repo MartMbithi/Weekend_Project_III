@@ -129,7 +129,57 @@ require_once('partials/head.php');
             <div class="row">
                 <div class="col-lg-12 col-xl-12">
                     <div class="card-box">
-                        <h4 class="header-title m-t-0 m-b-20">Recent Orders</h4>
+                        <h4 class="header-title m-t-0 m-b-20">Recent Customer Purchase Orders</h4>
+                        <table id="datatable-buttons" class="table table-bordered mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Product Details</th>
+                                    <th>Customer</th>
+                                    <th>Order Details</th>
+                                    <th>Order Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                $ret = "SELECT * FROM orders o
+                                INNER JOIN users u ON o.order_supplier_id = u.user_id
+                                INNER JOIN products p ON p.product_id = o.order_product_id
+                                WHERE o.order_type = 'purchase'
+                                ";
+                                $stmt = $mysqli->prepare($ret);
+                                $stmt->execute(); //ok
+                                $res = $stmt->get_result();
+                                while ($orders = $res->fetch_object()) {
+                                ?>
+                                    <tr>
+                                        <th>
+                                            <?php echo $orders->product_code . ' ' . $orders->product_name; ?>
+                                        </th>
+                                        <td>Name: <?php echo $orders->user_name; ?> <br>
+                                            Phone : <?php echo $orders->user_phone_no; ?>
+                                        </td>
+                                        <td>
+                                            Order # : <?php echo $orders->order_number; ?><br>
+                                            Order QTY: <?php echo $orders->order_qty; ?><br>
+                                            Payment Amt: Ksh <?php echo number_format($orders->order_amount, 2); ?><br>
+                                            Date: <?php echo $orders->order_date; ?>
+                                        </td>
+                                        <td>
+                                            <?php if ($orders->order_status == 'paid') { ?>
+                                                <span class="badge badge-success">Paid</span>
+                                            <?php } else { ?>
+                                                <span class="badge badge-danger">Pending</span>
+                                            <?php } ?>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div><!-- end col-->
+                <div class="col-lg-12 col-xl-12">
+                    <div class="card-box">
+                        <h4 class="header-title m-t-0 m-b-20">Recent Supplier Orders</h4>
                         <table id="datatable-buttons" class="table table-bordered mb-0">
                             <thead>
                                 <tr>
@@ -144,6 +194,7 @@ require_once('partials/head.php');
                                 $ret = "SELECT * FROM orders o
                                 INNER JOIN users u ON o.order_supplier_id = u.user_id
                                 INNER JOIN products p ON p.product_id = o.order_product_id
+                                WHERE o.order_type = 'supply'
                                 ";
                                 $stmt = $mysqli->prepare($ret);
                                 $stmt->execute(); //ok

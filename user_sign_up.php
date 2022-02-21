@@ -63,29 +63,32 @@ require_once 'config/config.php';
 require_once 'config/codeGen.php';
 
 /* Handle Login */
-if (isset($_POST['Login'])) {
-    $user_email = $_POST['user_email'];
+if (isset($_POST['Sign_Up'])) {
+    $user_access_level = $_GET['access'];;
+    $user_name = $_POST['user_name'];
+    $user_email  = $_POST['user_email'];
+    $user_phone_no = $_POST['user_phone_no'];
     $user_password = sha1(md5($_POST['user_password']));
-    $stmt = $mysqli->prepare("SELECT user_id, user_name, user_access_level, user_email, user_password FROM users WHERE user_email=? AND user_password=?");
-    $stmt->bind_param('ss', $user_email, $user_password);
-    $stmt->execute();
-    $stmt->bind_result($user_id, $user_name, $user_access_level, $user_email, $user_password);
-    $rs = $stmt->fetch();
 
-    /* Session Variables */
-    $_SESSION['user_id'] = $user_id;
-    $_SESSION['user_name'] = $user_name;
-    $_SESSION['user_access_level']  = $user_access_level;
-
-    /* Determine Where To Access */
-    if ($rs && $user_access_level == 'staff') {
-        header("location:dashboard");
-    } elseif ($rs && $user_access_level == 'supplier') {
-        header("location:supplier_dashboard");
-    } elseif ($rs && $user_access_level == 'customer') {
-        header("location:customer_dashboard");
+    /* Persist */
+    $sql = "INSERT INTO users (user_name, user_email, user_phone_no, user_access_level, user_password)
+    VALUES(?,?,?,?,?)";
+    $prepare = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param(
+        'sssss',
+        $user_name,
+        $user_email,
+        $user_phone_no,
+        $user_access_level,
+        $user_password
+    );
+    $prepare->execute();
+    if ($prepare) {
+        $_SESSION['success'] = 'Account Created, Proceed To Login';
+        header('Location: index');
+        exit;
     } else {
-        $err = "Access Denied Please Check Your Email Or Password";
+        $err  = "Failed!, Please Try Again";
     }
 }
 
@@ -113,40 +116,34 @@ require_once('partials/head.php');
                         </div>
                     </div>
                     <form class="m-t-20" method="POST">
-
+                        <div class="form-group row">
+                            <div class="col-12">
+                                <input class="form-control" type="text" name="user_name" required placeholder="Full Name">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-12">
+                                <input class="form-control" type="text" name="user_phone_no" required placeholder="Phone Number">
+                            </div>
+                        </div>
                         <div class="form-group row">
                             <div class="col-12">
                                 <input class="form-control" type="text" name="user_email" required placeholder="Email">
                             </div>
                         </div>
-
                         <div class="form-group row">
                             <div class="col-12">
                                 <input class="form-control" name="user_password" type="password" required placeholder="Password">
                             </div>
                         </div>
-
-                        <div class="form-group row">
-                            <div class="col-12">
-
-                            </div>
-                        </div>
-
                         <div class="form-group text-center row m-t-10">
                             <div class="col-12">
-                                <button class="btn btn-success btn-block waves-effect waves-light" name="Login" type="submit">Log In</button>
+                                <button class="btn btn-success btn-block waves-effect waves-light" name="Sign_Up" type="submit">Sign Up</button>
                             </div>
                         </div>
-
                         <div class="form-group row m-t-30 mb-0">
                             <div class="col-12">
-                                <a href="reset_password" class="text-muted"><i class="fa fa-lock m-r-5"></i> Forgot Password?</a>
-                            </div>
-                            <div class="col-6">
-                                <a href="user_sign_up?access=customer" class="text-muted"><i class="fa fa-user-plus m-r-5"></i>Sign Up As Customer</a>
-                            </div>
-                            <div class="col-6">
-                                <a href="user_sign_up?access=supplier" class="text-muted"><i class="fa fa-user-plus m-r-5"></i>Sign Up As Supplier</a>
+                                <a href="index" class="text-muted"><i class="fa fa-lock m-r-5"></i> Already Has Account?</a>
                             </div>
                         </div>
                     </form>
