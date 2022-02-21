@@ -92,7 +92,7 @@ $user_id = $_SESSION['user_id'];
 
 
             <div class="row">
-                <div class="col-md-6 col-xl-3">
+                <div class="col-md-6 col-xl-4">
                     <div class="card-box tilebox-one">
                         <i class="icon-layers float-right text-muted"></i>
                         <h6 class="text-muted text-uppercase m-b-20">My Orders</h6>
@@ -100,7 +100,7 @@ $user_id = $_SESSION['user_id'];
                     </div>
                 </div>
 
-                <div class="col-md-6 col-xl-3">
+                <div class="col-md-6 col-xl-4">
                     <div class="card-box tilebox-one">
                         <i class="icon-rocket float-right text-muted"></i>
                         <h6 class="text-muted text-uppercase m-b-20">My Pending Order Payments</h6>
@@ -108,7 +108,7 @@ $user_id = $_SESSION['user_id'];
                     </div>
                 </div>
 
-                <div class="col-md-6 col-xl-3">
+                <div class="col-md-6 col-xl-4">
                     <div class="card-box tilebox-one">
                         <i class="icon-chart float-right text-muted"></i>
                         <h6 class="text-muted text-uppercase m-b-20">My Overall Revenue</h6>

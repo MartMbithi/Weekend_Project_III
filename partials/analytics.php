@@ -129,8 +129,6 @@ if ($user_access_level == 'staff') {
     $stmt->fetch();
     $stmt->close();
 
-
-
     /* 3. Incomes */
     $query = "SELECT SUM(order_amount) FROM orders WHERE order_status = 'paid' AND order_supplier_id = '$user_id' ";
     $stmt = $mysqli->prepare($query);
