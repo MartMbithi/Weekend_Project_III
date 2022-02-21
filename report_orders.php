@@ -109,7 +109,7 @@ require_once('partials/head.php');
                                 $ret = "SELECT * FROM orders o
                                 INNER JOIN products p ON p.product_id = o.order_product_id
                                 INNER JOIN users u ON u.user_id = o.order_supplier_id
-                                WHERE order_status = 'supply'";
+                                WHERE order_type = 'supply'";
                                 $stmt = $mysqli->prepare($ret);
                                 $stmt->execute(); //ok
                                 $res = $stmt->get_result();
