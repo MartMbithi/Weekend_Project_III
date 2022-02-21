@@ -85,7 +85,7 @@ $user_id = $_SESSION['user_id'];
             <div class="row">
                 <div class="col-sm-12">
                     <div class="page-title-box">
-                        <h4 class="page-title">Supplier Dashboard</h4>
+                        <h4 class="page-title">Customer Dashboard</h4>
                     </div>
                 </div>
             </div>
@@ -95,7 +95,7 @@ $user_id = $_SESSION['user_id'];
                 <div class="col-md-6 col-xl-4">
                     <div class="card-box tilebox-one">
                         <i class="icon-layers float-right text-muted"></i>
-                        <h6 class="text-muted text-uppercase m-b-20">My Supply Orders</h6>
+                        <h6 class="text-muted text-uppercase m-b-20">My Orders</h6>
                         <h2 class="m-b-20" data-plugin="counterup"><?php echo $orders; ?></h2>
                     </div>
                 </div>
@@ -134,11 +134,11 @@ $user_id = $_SESSION['user_id'];
                             </thead>
                             <tbody>
                                 <?php
-
+                                $user_id = $_SESSION['user_id'];
                                 $ret = "SELECT * FROM orders o
                                 INNER JOIN users u ON o.order_supplier_id = u.user_id
                                 INNER JOIN products p ON p.product_id = o.order_product_id
-                                WHERE o.order_type = 'supply' AND o.order_supplier_id = '$user_id'
+                                WHERE o.order_type = 'purchase' AND o.order_supplier_id = '$user_id'
                                 ";
                                 $stmt = $mysqli->prepare($ret);
                                 $stmt->execute(); //ok

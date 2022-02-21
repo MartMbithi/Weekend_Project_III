@@ -329,9 +329,6 @@ if ($access_level == 'staff') {
                             <a href="customer_dashboard"><i class="fa fa-home"></i> <span> Dashboard </span> </a>
                         </li>
                         <li>
-                            <a href="customer_products"><i class="fa fa-list"></i> <span> Products </span> </a>
-                        </li>
-                        <li>
                             <a href="customer_orders"><i class="fa fa-calendar-check-o"></i> <span> Purchases </span> </a>
                         </li>
                         <li class="has-submenu">
