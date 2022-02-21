@@ -85,7 +85,7 @@ require_once('partials/head.php');
             <div class="row">
                 <div class="col-sm-12">
                     <div class="page-title-box">
-                        <h4 class="page-title">Poultry Farm Products Supply Orders</h4>
+                        <h4 class="page-title">Poultry Farm Products Purchase Orders</h4>
                     </div>
                 </div>
             </div>
@@ -98,7 +98,7 @@ require_once('partials/head.php');
                                 <tr>
                                     <th>Order Number</th>
                                     <th>Product</th>
-                                    <th>Supplier</th>
+                                    <th>Customer</th>
                                     <th>Qty Ordered</th>
                                     <th>Date Posted</th>
                                     <th>Cost</th>
@@ -109,7 +109,7 @@ require_once('partials/head.php');
                                 $ret = "SELECT * FROM orders o
                                 INNER JOIN products p ON p.product_id = o.order_product_id
                                 INNER JOIN users u ON u.user_id = o.order_supplier_id
-                                WHERE order_status = 'supply'";
+                                WHERE order_status = 'purchase'";
                                 $stmt = $mysqli->prepare($ret);
                                 $stmt->execute(); //ok
                                 $res = $stmt->get_result();
