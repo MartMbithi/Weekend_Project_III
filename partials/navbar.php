@@ -172,7 +172,7 @@ if ($access_level == 'staff') {
 
                 <!-- LOGO -->
                 <div class="topbar-left">
-                    <a href="dashboard" class="logo">
+                    <a href="supplier_dashboard" class="logo">
                         <span>Poultry Farm MIS</span>
                     </a>
                 </div>
@@ -206,7 +206,7 @@ if ($access_level == 'staff') {
                                 </div>
 
                                 <!-- item-->
-                                <a href="settings" class="dropdown-item notify-item">
+                                <a href="supplier_settings" class="dropdown-item notify-item">
                                     <i class="zmdi zmdi-settings"></i> <span>Settings</span>
                                 </a>
                                 <!-- item-->
@@ -233,32 +233,17 @@ if ($access_level == 'staff') {
                     <!-- Navigation Menu-->
                     <ul class="navigation-menu">
                         <li>
-                            <a href="dashboard"><i class="fa fa-home"></i> <span> Dashboard </span> </a>
+                            <a href="supplier_dashboard"><i class="fa fa-home"></i> <span> Dashboard </span> </a>
                         </li>
                         <li>
-                            <a href="staffs"><i class="fa fa-user"></i> <span> Staffs </span> </a>
-                        </li>
-                        <li>
-                            <a href="suppliers"><i class="fa fa-user-plus"></i> <span> Suppliers </span> </a>
-                        </li>
-                        <li>
-                            <a href="customers"><i class="fa fa-users"></i> <span> Customers </span> </a>
-                        </li>
-                        <li>
-                            <a href="products"><i class="fa fa-list"></i> <span> Products </span> </a>
-                        </li>
-                        <li>
-                            <a href="orders"><i class="fa fa-calendar-check-o"></i> <span> Orders </span> </a>
+                            <a href="supplier_orders"><i class="fa fa-calendar-check-o"></i> <span>Order Requests </span> </a>
                         </li>
                         <li class="has-submenu">
                             <a href="#"><i class="fa fa-file-excel-o"></i> <span> Reports </span> </a>
                             <ul class="submenu megamenu">
                                 <li>
                                     <ul>
-                                        <li><a href="report_suppliers">Suppliers</a></li>
-                                        <li><a href="report_customers">Customers</a></li>
-                                        <li><a href="report_orders">Orders</a></li>
-                                        <li><a href="report_products">Poultry Products</a></li>
+                                        <li><a href="report_supply_orders">Orders</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -276,7 +261,7 @@ if ($access_level == 'staff') {
 
                 <!-- LOGO -->
                 <div class="topbar-left">
-                    <a href="dashboard" class="logo">
+                    <a href="customer_dashboard" class="logo">
                         <span>Poultry Farm MIS</span>
                     </a>
                 </div>
@@ -310,7 +295,7 @@ if ($access_level == 'staff') {
                                 </div>
 
                                 <!-- item-->
-                                <a href="settings" class="dropdown-item notify-item">
+                                <a href="customer_settings" class="dropdown-item notify-item">
                                     <i class="zmdi zmdi-settings"></i> <span>Settings</span>
                                 </a>
                                 <!-- item-->
@@ -337,32 +322,20 @@ if ($access_level == 'staff') {
                     <!-- Navigation Menu-->
                     <ul class="navigation-menu">
                         <li>
-                            <a href="dashboard"><i class="fa fa-home"></i> <span> Dashboard </span> </a>
+                            <a href="customer_dashboard"><i class="fa fa-home"></i> <span> Dashboard </span> </a>
                         </li>
                         <li>
-                            <a href="staffs"><i class="fa fa-user"></i> <span> Staffs </span> </a>
+                            <a href="customer_products"><i class="fa fa-list"></i> <span> Products </span> </a>
                         </li>
                         <li>
-                            <a href="suppliers"><i class="fa fa-user-plus"></i> <span> Suppliers </span> </a>
-                        </li>
-                        <li>
-                            <a href="customers"><i class="fa fa-users"></i> <span> Customers </span> </a>
-                        </li>
-                        <li>
-                            <a href="products"><i class="fa fa-list"></i> <span> Products </span> </a>
-                        </li>
-                        <li>
-                            <a href="orders"><i class="fa fa-calendar-check-o"></i> <span> Orders </span> </a>
+                            <a href="customer_orders"><i class="fa fa-calendar-check-o"></i> <span> Purchases </span> </a>
                         </li>
                         <li class="has-submenu">
                             <a href="#"><i class="fa fa-file-excel-o"></i> <span> Reports </span> </a>
                             <ul class="submenu megamenu">
                                 <li>
                                     <ul>
-                                        <li><a href="report_suppliers">Suppliers</a></li>
-                                        <li><a href="report_customers">Customers</a></li>
-                                        <li><a href="report_orders">Orders</a></li>
-                                        <li><a href="report_products">Poultry Products</a></li>
+                                        <li><a href="report_customer_purchases">Purchase History</a></li>
                                     </ul>
                                 </li>
                             </ul>
