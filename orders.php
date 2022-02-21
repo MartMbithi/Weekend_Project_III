@@ -168,7 +168,7 @@ if (isset($_POST['pay_order'])) {
     $bind = $prepare->bind_param('ss', $order_status, $order_id);
     $prepare->execute();
     if ($prepare) {
-        $success = "Supply Order Marked As Paid";
+        $success = "Supply Order Approved And Paid";
     } else {
         $err = "Failed!, Please Try Again Later";
     }

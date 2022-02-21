@@ -105,7 +105,7 @@ if ($user_access_level == 'staff') {
     }
 
     /* 4. Unpaid Orders */
-    $query = "SELECT SUM(order_amount) FROM orders WHERE order_status = 'pending' ";
+    $query = "SELECT SUM(order_amount) FROM orders WHERE order_status = 'pending'  AND order_type = 'purchase'";
     $stmt = $mysqli->prepare($query);
     $stmt->execute();
     $stmt->bind_result($unpaid_orders);
@@ -117,8 +117,102 @@ if ($user_access_level == 'staff') {
     } else {
         $unpaid_orders = 0;
     }
+
+    /* 5. Pending Supply Payments */
+    $query = "SELECT SUM(order_amount) FROM orders WHERE order_status = 'pending'  AND order_type = 'supply'";
+    $stmt = $mysqli->prepare($query);
+    $stmt->execute();
+    $stmt->bind_result($supplies_orders);
+    $stmt->fetch();
+    $stmt->close();
+    /* Avoid Posting Null Values */
+    if (!empty($supplies_orders)) {
+        $supplies_orders = $supplies_orders;
+    } else {
+        $supplies_orders = 0;
+    }
+
+    /* 6. Expenditure */
+    $query = "SELECT SUM(order_amount) FROM orders WHERE order_status = 'paid'  AND order_type = 'supply'";
+    $stmt = $mysqli->prepare($query);
+    $stmt->execute();
+    $stmt->bind_result($expenditure);
+    $stmt->fetch();
+    $stmt->close();
+    /* Avoid Posting Null Values */
+    if (!empty($expenditure)) {
+        $expenditure = $expenditure;
+    } else {
+        $expenditure = 0;
+    }
+
+
+    /* 7. Customers */
+    $query = "SELECT COUNT(*)  FROM users WHERE user_access_level = 'customer' ";
+    $stmt = $mysqli->prepare($query);
+    $stmt->execute();
+    $stmt->bind_result($customer);
+    $stmt->fetch();
+    $stmt->close();
+
+    /* 8. Suppliers */
+    $query = "SELECT COUNT(*)  FROM users WHERE user_access_level = 'supplier' ";
+    $stmt = $mysqli->prepare($query);
+    $stmt->execute();
+    $stmt->bind_result($supplier);
+    $stmt->fetch();
+    $stmt->close();
+
+    /* 9. Revenue */
+    $query = "SELECT SUM(order_amount) FROM orders WHERE order_status = 'paid'  AND order_type = 'purchase'";
+    $stmt = $mysqli->prepare($query);
+    $stmt->execute();
+    $stmt->bind_result($revenue);
+    $stmt->fetch();
+    $stmt->close();
+    /* Avoid Posting Null Values */
+    if (!empty($revenue)) {
+        $revenue = $revenue;
+    } else {
+        $revenue = 0;
+    }
 } elseif ($user_access_level == 'customer') {
     /* Load Customer Analytics Here */
+    /* 1 . Orders */
+    $query = "SELECT COUNT(*)  FROM orders WHERE order_supplier_id = '$user_id' ";
+    $stmt = $mysqli->prepare($query);
+    $stmt->execute();
+    $stmt->bind_result($orders);
+    $stmt->fetch();
+    $stmt->close();
+
+    /* 3. Incomes */
+    $query = "SELECT SUM(order_amount) FROM orders WHERE order_status = 'paid' AND order_supplier_id = '$user_id' ";
+    $stmt = $mysqli->prepare($query);
+    $stmt->execute();
+    $stmt->bind_result($paid_orders);
+    $stmt->fetch();
+    $stmt->close();
+    /* Avoid Posting Null Values */
+    if (!empty($paid_orders)) {
+        $paid_orders = $paid_orders;
+    } else {
+        $paid_orders = 0;
+    }
+
+    /* 4. Unpaid Orders */
+    $query = "SELECT SUM(order_amount) FROM orders WHERE order_status = 'pending' AND order_supplier_id = '$user_id' ";
+    $stmt = $mysqli->prepare($query);
+    $stmt->execute();
+    $stmt->bind_result($unpaid_orders);
+    $stmt->fetch();
+    $stmt->close();
+    /* Avoid Posting Null Values */
+    if (!empty($unpaid_orders)) {
+        $unpaid_orders = $unpaid_orders;
+    } else {
+        $unpaid_orders = 0;
+    }
 } else {
     /* Load Supplier Analytics Here */
     /* 1 . Orders */
