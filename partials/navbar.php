@@ -144,7 +144,10 @@ if ($access_level == 'staff') {
                             <a href="products"><i class="fa fa-list"></i> <span> Products </span> </a>
                         </li>
                         <li>
-                            <a href="orders"><i class="fa fa-calendar-check-o"></i> <span> Orders </span> </a>
+                            <a href="orders"><i class="fa fa-calendar-check-o"></i> <span> Order Requests</span> </a>
+                        </li>
+                        <li>
+                            <a href="customer_orders"><i class="fa fa-check"></i> <span>Customer Purchases</span> </a>
                         </li>
                         <li class="has-submenu">
                             <a href="#"><i class="fa fa-file-excel-o"></i> <span> Reports </span> </a>
@@ -153,7 +156,8 @@ if ($access_level == 'staff') {
                                     <ul>
                                         <li><a href="report_suppliers">Suppliers</a></li>
                                         <li><a href="report_customers">Customers</a></li>
-                                        <li><a href="report_orders">Orders</a></li>
+                                        <li><a href="report_orders">Orders Requests</a></li>
+                                        <li><a href="report_purchases">Purchases</a></li>
                                         <li><a href="report_products">Poultry Products</a></li>
                                     </ul>
                                 </li>
