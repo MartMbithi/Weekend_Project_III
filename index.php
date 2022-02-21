@@ -134,7 +134,13 @@ require_once('partials/head.php');
 
                         <div class="form-group row m-t-30 mb-0">
                             <div class="col-12">
-                                <a href="reset_password" class="text-muted"><i class="fa fa-lock m-r-5"></i> Forgot your password?</a>
+                                <a href="reset_password" class="text-muted"><i class="fa fa-lock m-r-5"></i> Forgot Password?</a>
+                            </div>
+                            <div class="col-6">
+                                <a href="user_sign_up?access=customer" class="text-muted"><i class="fa fa-user-plus m-r-5"></i>Sign Up As Customer</a>
+                            </div>
+                            <div class="col-6">
+                                <a href="user_sign_up?access=supplier" class="text-muted"><i class="fa fa-user-plus m-r-5"></i>Sign Up As Supplier</a>
                             </div>
                         </div>
                     </form>
