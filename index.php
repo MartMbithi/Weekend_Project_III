@@ -66,18 +66,24 @@ require_once 'config/codeGen.php';
 if (isset($_POST['Login'])) {
     $user_email = $_POST['user_email'];
     $user_password = sha1(md5($_POST['user_password']));
-    $stmt = $mysqli->prepare("SELECT user_id, user_name, user_email, user_password FROM users WHERE user_email=? AND user_password=?");
+    $stmt = $mysqli->prepare("SELECT user_id, user_name, user_access_level, user_email, user_password FROM users WHERE user_email=? AND user_password=?");
     $stmt->bind_param('ss', $user_email, $user_password);
     $stmt->execute();
-    $stmt->bind_result($user_id, $user_name, $user_email, $user_password);
+    $stmt->bind_result($user_id, $user_name, $user_access_level, $user_email, $user_password);
     $rs = $stmt->fetch();
 
     /* Session Variables */
     $_SESSION['user_id'] = $user_id;
     $_SESSION['user_name'] = $user_name;
+    $_SESSION['user_access_level']  = $user_access_level;
 
-    if ($rs) {
+    /* Determine Where To Access */
+    if ($rs && $user_access_level == 'staff') {
         header("location:dashboard");
+    } elseif ($rs && $user_access_level == 'supplier') {
+        header("location:supplier_dashboard");
+    } elseif ($rs && $user_access_level == 'customer') {
+        header("location:customer_dashboard");
     } else {
         $err = "Access Denied Please Check Your Email Or Password";
     }
