@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 20, 2022 at 09:33 AM
+-- Generation Time: Feb 21, 2022 at 04:01 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.10
 
@@ -35,16 +35,22 @@ CREATE TABLE `orders` (
   `order_amount` varchar(200) NOT NULL,
   `order_product_id` int(200) NOT NULL,
   `order_date` varchar(200) NOT NULL,
-  `order_status` varchar(200) NOT NULL DEFAULT 'Pending'
+  `order_status` varchar(200) NOT NULL DEFAULT 'Pending',
+  `order_type` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`order_id`, `order_number`, `order_supplier_id`, `order_qty`, `order_amount`, `order_product_id`, `order_date`, `order_status`) VALUES
-(1, '32587OPBRN', 6, '500', '5000', 1, '20 Feb 2022', 'paid'),
-(3, '89405YWZAJ', 6, '800', '12000', 2, '20 Feb 2022', 'paid');
+INSERT INTO `orders` (`order_id`, `order_number`, `order_supplier_id`, `order_qty`, `order_amount`, `order_product_id`, `order_date`, `order_status`, `order_type`) VALUES
+(7, '43028KNERY', 12, '500', '250000', 3, '21 Feb 2022', 'paid', 'supply'),
+(8, '06135TDRZL', 8, '1500', '750000', 3, '21 Feb 2022', 'paid', 'purchase'),
+(9, '06324EPCFH', 4, '900', '9000', 1, '21 Feb 2022', 'paid', 'supply'),
+(10, '67210DGMHN', 4, '900', '450000', 3, '21 Feb 2022', 'paid', 'supply'),
+(11, '03269UAHFO', 4, '1500', '22500', 2, '21 Feb 2022', 'paid', 'supply'),
+(12, '97468UNAXR', 12, '500', '250000', 3, '21 Feb 2022', 'paid', 'supply'),
+(14, '03864GQZXR', 11, '900', '9000', 1, '21 Feb 2022', 'pending', 'purchase');
 
 -- --------------------------------------------------------
 
@@ -96,8 +102,8 @@ INSERT INTO `users` (`user_id`, `user_name`, `user_email`, `user_password`, `use
 (4, 'James Doe', 'jdsupplier@gmail.com', 'a69681bcf334ae130217fea4505fd3c994f5683f', 'supplier', '08877666321'),
 (6, 'Jane Doe', 'test@mail.com', 'a69681bcf334ae130217fea4505fd3c994f5683f', 'customer', '07101010107'),
 (8, 'James Doe Jnr', 'jd9012@gmail.com', '67a74306b06d0c01624fe0d0249a570f4d093747', 'customer', '6677553423256'),
-(9, 'Todd James', 'td@mail.com', NULL, 'customer', '9001256'),
-(10, 'Supplier Doe James', 'supplier@jamesdoeinc.com', NULL, 'supplier', '456789133');
+(11, 'Todd James', 'todd@mail.com', 'a69681bcf334ae130217fea4505fd3c994f5683f', 'customer', '0790023495'),
+(12, 'Supplier Doe James', 'supplierdoe@hames.com', 'a69681bcf334ae130217fea4505fd3c994f5683f', 'supplier', '097865432');
 
 --
 -- Indexes for dumped tables
@@ -131,7 +137,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `order_id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -143,7 +149,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `user_id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables
