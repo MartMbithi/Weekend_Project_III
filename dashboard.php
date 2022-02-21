@@ -91,37 +91,51 @@ require_once('partials/head.php');
 
 
             <div class="row">
-                <div class="col-md-6 col-xl-3">
+                <div class="col-md-6 col-xl-4">
                     <div class="card-box tilebox-one">
                         <i class="icon-layers float-right text-muted"></i>
-                        <h6 class="text-muted text-uppercase m-b-20">Orders</h6>
-                        <h2 class="m-b-20" data-plugin="counterup"><?php echo $orders; ?></h2>
+                        <h6 class="text-muted text-uppercase m-b-20">Customers</h6>
+                        <h2 class="m-b-20" data-plugin="counterup"><?php echo $customers; ?></h2>
+                    </div>
+                </div>
+                <div class="col-md-6 col-xl-4">
+                    <div class="card-box tilebox-one">
+                        <i class="icon-layers float-right text-muted"></i>
+                        <h6 class="text-muted text-uppercase m-b-20">Suppliers</h6>
+                        <h2 class="m-b-20" data-plugin="counterup"><?php echo $suppliers; ?></h2>
                     </div>
                 </div>
 
-                <div class="col-md-6 col-xl-3">
+                <div class="col-md-6 col-xl-4">
                     <div class="card-box tilebox-one">
                         <i class="icon-paypal float-right text-muted"></i>
-                        <h6 class="text-muted text-uppercase m-b-20">Poultry Products</h6>
+                        <h6 class="text-muted text-uppercase m-b-20">Poultry Products Qty</h6>
                         <h2 class="m-b-20"><span data-plugin="counterup"><?php echo $products; ?></span></h2>
                     </div>
                 </div>
 
-                <div class="col-md-6 col-xl-3">
+                <div class="col-md-6 col-xl-4">
+                    <div class="card-box tilebox-one">
+                        <i class="icon-paypal float-right text-muted"></i>
+                        <h6 class="text-muted text-uppercase m-b-20">Overall Orders</h6>
+                        <h2 class="m-b-20"><span data-plugin="counterup"><?php echo $orders; ?></span></h2>
+                    </div>
+                </div>
+                <div class="col-md-6 col-xl-4">
                     <div class="card-box tilebox-one">
                         <i class="icon-rocket float-right text-muted"></i>
                         <h6 class="text-muted text-uppercase m-b-20">Pending Purchase Payments</h6>
                         <h2 class="m-b-20" data-plugin="counterup">Ksh <?php echo number_format($unpaid_orders, 2); ?></h2>
                     </div>
                 </div>
-                <div class="col-md-6 col-xl-3">
+                <div class="col-md-6 col-xl-4">
                     <div class="card-box tilebox-one">
                         <i class="icon-rocket float-right text-muted"></i>
                         <h6 class="text-muted text-uppercase m-b-20">Pending Supply Orders Payments</h6>
                         <h2 class="m-b-20" data-plugin="counterup">Ksh <?php echo number_format($supplies_orders, 2); ?></h2>
                     </div>
                 </div>
-                <div class="col-md-6 col-xl-3">
+                <div class="col-md-6 col-xl-4">
                     <div class="card-box tilebox-one">
                         <i class="icon-rocket float-right text-muted"></i>
                         <h6 class="text-muted text-uppercase m-b-20">Expenses</h6>
@@ -129,13 +143,32 @@ require_once('partials/head.php');
                     </div>
                 </div>
 
-                <div class="col-md-6 col-xl-3">
+                <div class="col-md-6 col-xl-4">
                     <div class="card-box tilebox-one">
                         <i class="icon-chart float-right text-muted"></i>
                         <h6 class="text-muted text-uppercase m-b-20">Overall Revenue</h6>
                         <h2 class="m-b-20"><span data-plugin="counterup">Ksh <?php echo  number_format($revenue, 2); ?></span></h2>
                     </div>
                 </div>
+                <?php if ($revenue >= $expenditure) {
+                    $profit = $revenue - $expenditure ?>
+                    <div class="col-md-6 col-xl-4 text-success">
+                        <div class="card-box tilebox-one">
+                            <i class="icon-chart float-right text-muted"></i>
+                            <h6 class="text-success text-uppercase m-b-20">Overall Profit</h6>
+                            <h2 class="m-b-20"><span data-plugin="counterup">Ksh <?php echo  number_format($profit, 2); ?></span></h2>
+                        </div>
+                    </div>
+                <?php } else {
+                    $loss = $expenditure - $revenue ?>
+                    <div class="col-md-6 col-xl-4 text-danger">
+                        <div class="card-box tilebox-one">
+                            <i class="icon-chart float-right text-muted"></i>
+                            <h6 class="text-danger text-uppercase m-b-20">Overall Loss</h6>
+                            <h2 class="m-b-20"><span data-plugin="counterup">Ksh <?php echo  number_format($loss, 2); ?></span></h2>
+                        </div>
+                    </div>
+                <?php } ?>
             </div>
             <!-- end row -->
 

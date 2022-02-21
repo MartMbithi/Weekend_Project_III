@@ -151,7 +151,7 @@ if ($user_access_level == 'staff') {
     $query = "SELECT COUNT(*)  FROM users WHERE user_access_level = 'customer' ";
     $stmt = $mysqli->prepare($query);
     $stmt->execute();
-    $stmt->bind_result($customer);
+    $stmt->bind_result($customers);
     $stmt->fetch();
     $stmt->close();
 
@@ -159,7 +159,7 @@ if ($user_access_level == 'staff') {
     $query = "SELECT COUNT(*)  FROM users WHERE user_access_level = 'supplier' ";
     $stmt = $mysqli->prepare($query);
     $stmt->execute();
-    $stmt->bind_result($supplier);
+    $stmt->bind_result($suppliers);
     $stmt->fetch();
     $stmt->close();
 
