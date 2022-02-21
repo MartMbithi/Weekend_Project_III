@@ -282,7 +282,7 @@ require_once('partials/head.php');
                                         <td>
                                             <?php if ($orders->order_status != 'paid') { ?>
                                                 <a data-toggle="modal" href="#update_<?php echo $orders->order_id; ?>" class="badge badge-primary"><i class="fa fa-edit"></i> Edit</a>
-                                                <a data-toggle="modal" href="#delete_<?php echo $orders->order_id; ?>" class="badge badge-danger"><i class="fa fa-trash"></i> Delete</a>
+                                                <a data-toggle="modal" href="#delete_<?php echo $orders->order_id; ?>" class="badge badge-danger"><i class="fa fa-trash"></i> Cancel</a>
                                             <?php } ?>
                                         </td>
 
