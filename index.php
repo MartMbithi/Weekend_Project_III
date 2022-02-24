@@ -135,27 +135,23 @@ require_once('cms_partials/head.php');
                 <div class="col-lg-6 col-12">
                     <div class="about-wrapper p-0">
                         <div class="about-title">
-                            <h2><span class="d-lg-block"> Welcome to Our Poultry And </span>Egg Farm.</h2>
-                            <p>Continually productize compelling quality for packed with Elated productize compelling
-                                quality for packed with all Elated ThemSetting up to website and creating pages.</p>
+                            <h2><span class="d-lg-block"> Poultry Farm Information </span>Management System</h2>
+                            <p>This system is a full-featured Software with a user-friendly user interface,
+                                which allows you to manage your Poultry Graphically efficiently.
+                                It is developed specifically for Integrated Poultry Farmers,
+                                Poultry Brokers, Egg Trading, Feed Trading, Chicken Trading,
+                                Feed Formulation, which is affordable, powerful, and easy to use. This system implements the following modules:
+                            </p>
                         </div>
                         <div class="about-content">
                             <ul class="lab-ul list-group">
-                                <li class="list-group-item py-1 px-0 border-none"><i class="icofont-tick-boxed mr-2 color-theme"></i>We are
-                                    providing different
-                                    services</li>
-                                <li class="list-group-item py-1 px-0 border-none"><i class="icofont-tick-boxed mr-2 color-theme"></i>We are one
-                                    of leading company
-                                </li>
-                                <li class="list-group-item py-1 px-0 border-none"><i class="icofont-tick-boxed mr-2 color-theme"></i>Profitability is the primary
-                                    goal of all business</li>
-                                <li class="list-group-item py-1 px-0 border-none"><i class="icofont-tick-boxed mr-2 color-theme"></i>Learn how
-                                    to grow your Business
-                                </li>
-                                <li class="list-group-item py-1 px-0 border-none"><i class="icofont-tick-boxed mr-2 color-theme"></i>Professional solutions for your
-                                    business</li>
+                                <li class="list-group-item py-1 px-0 border-none"><i class="icofont-tick-boxed mr-2 color-theme"></i>Customer Management Module</li>
+                                <li class="list-group-item py-1 px-0 border-none"><i class="icofont-tick-boxed mr-2 color-theme"></i>Staffs Management Module</li>
+                                <li class="list-group-item py-1 px-0 border-none"><i class="icofont-tick-boxed mr-2 color-theme"></i>Poultry Products Management Module</li>
+                                <li class="list-group-item py-1 px-0 border-none"><i class="icofont-tick-boxed mr-2 color-theme"></i>Suppliers Management Module</li>
+                                <li class="list-group-item py-1 px-0 border-none"><i class="icofont-tick-boxed mr-2 color-theme"></i>Expenses Management Module</li>
+                                <li class="list-group-item py-1 px-0 border-none"><i class="icofont-tick-boxed mr-2 color-theme"></i>Powerful Reporting  Module</li>
                             </ul>
-                            <a href="#" class="lab-btn mt-4"><span>Read More</span></a>
                         </div>
                     </div>
                 </div>
