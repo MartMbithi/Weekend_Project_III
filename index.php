@@ -90,27 +90,7 @@ require_once('cms_partials/head.php');
                             <div class="row flex-row-reverse justify-content-center align-items-center">
                                 <div class="col-12">
                                     <div class="banner-content">
-                                        <h1 class="banner-title"><B class="d-lg-block">Fresh Killed Poultry </B>
-                                            Chickens Specialty Game Meats
-                                            Eggs And More!!! </h1>
-                                        <a href="#" class="lab-btn"><span>DISCOVER NOW</span></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="banner-slider-part" style="background-image: url(cms_assets/images/bg-images/index.jpeg);">
-                        <div class="overlay"></div>
-                        <div class="container">
-                            <div class="row flex-row-reverse justify-content-center align-items-center">
-                                <div class="col-12">
-                                    <div class="banner-content">
-                                        <h1 class="banner-title"><B class="d-lg-block">Fresh Killed Poultry </B>
-                                            Chickens Specialty Game Meats
-                                            Eggs And More!!! </h1>
-                                        <a href="#" class="lab-btn"><span>DISCOVER NOW</span></a>
+                                        <h1 class="banner-title"><B class="d-lg-block">Poultry Farm Information Management System</h1>
                                     </div>
                                 </div>
                             </div>
@@ -118,7 +98,6 @@ require_once('cms_partials/head.php');
                     </div>
                 </div>
             </div>
-            <div class="swiper-pagination"></div>
         </div>
     </section>
     <!-- Banner Section Ending Here -->
@@ -150,7 +129,7 @@ require_once('cms_partials/head.php');
                                 <li class="list-group-item py-1 px-0 border-none"><i class="icofont-tick-boxed mr-2 color-theme"></i>Poultry Products Management Module</li>
                                 <li class="list-group-item py-1 px-0 border-none"><i class="icofont-tick-boxed mr-2 color-theme"></i>Suppliers Management Module</li>
                                 <li class="list-group-item py-1 px-0 border-none"><i class="icofont-tick-boxed mr-2 color-theme"></i>Expenses Management Module</li>
-                                <li class="list-group-item py-1 px-0 border-none"><i class="icofont-tick-boxed mr-2 color-theme"></i>Powerful Reporting  Module</li>
+                                <li class="list-group-item py-1 px-0 border-none"><i class="icofont-tick-boxed mr-2 color-theme"></i>Powerful Reporting Module</li>
                             </ul>
                         </div>
                     </div>
