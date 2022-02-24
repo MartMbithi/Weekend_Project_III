@@ -439,7 +439,7 @@
 		var downloads = [[0, 2], [1, 4], [2, 7], [3, 9], [4, 6], [5, 3], [6, 10],[7, 8], [8, 5], [9, 14], [10, 10], [11, 10], [12, 8]];
 		var downloads1 = [[0, 1], [1, 3], [2, 6], [3, 7], [4, 4], [5, 2], [6, 8],[7, 6], [8, 4], [9, 10], [10, 8], [11, 14], [12, 5]];
 		var plabels = ["Google", "Yahoo","Facebbok"];
-		var pcolors = ['#64b0f2', '#ff7aa3','#158c75'];
+		var pcolors = ['#fe964d', '#ff7aa3','#158c75'];
 		var borderColor = '#f5f5f5';
 		var bgColor = '#fff';
 		this.createPlotGraph("#website-stats", uploads, downloads, downloads1, plabels, pcolors, borderColor, bgColor);
@@ -460,7 +460,7 @@
 		this.createPieGraph("#pie-chart #pie-chart-container", pielabels, datas, colors);
 
 		//real time data representation
-		var plot = this.createRealTimeGraph('#flotRealTime', this.randomData(), ['#64b0f2']);
+		var plot = this.createRealTimeGraph('#flotRealTime', this.randomData(), ['#fe964d']);
 		plot.draw();
 		var $this = this;
 		function updatePlot() {

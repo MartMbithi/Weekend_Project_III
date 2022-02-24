@@ -52,7 +52,7 @@ File: C3 Charts
                     data1: '#ebeff2',
                     data2: '#1bb99a',
                     data3: '#ff5d48',
-                    data4: '#64b0f2',
+                    data4: '#fe964d',
                     data5: '#ff7aa3'
                 },
                 groups: [
