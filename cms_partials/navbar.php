@@ -44,7 +44,7 @@
                                 </div>
                                 <div class="ht-add-content">
                                     <span>72AH, Victoria,</span>
-                                    <span class="d-block text-bold">Collins Street West USA</span>
+                                    <span class="d-block text-bold">Collins Street West Kenya</span>
                                 </div>
                             </li>
                             <li class="d-flex flex-wrap align-items-center">
@@ -53,7 +53,7 @@
                                 </div>
                                 <div class="ht-add-content">
                                     <span>Send Mail </span>
-                                    <span class="d-block text-bold">murgifarm@gmail.com</span>
+                                    <span class="d-block text-bold">info@poultry_mis.com</span>
                                 </div>
                             </li>
                             <li class="d-flex flex-wrap align-items-center">
@@ -62,7 +62,7 @@
                                 </div>
                                 <div class="ht-add-content">
                                     <span>Make Call </span>
-                                    <span class="d-block text-bold">+88-6487-5962-563</span>
+                                    <span class="d-block text-bold">+254-6487-5962</span>
                                 </div>
                             </li>
                         </ul>
