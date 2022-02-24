@@ -1,22 +1,8 @@
-<!--search area-->
-<div class="search-input">
-    <div class="search-close">
-        <i class="icofont-close-circled"></i>
-    </div>
-    <form>
-        <input type="text" name="text" placeholder="Search Heare">
-        <button class="search-btn" type="submit">
-            <i class="icofont-search-2"></i>
-        </button>
-    </form>
-</div>
-<!-- search area -->
-
 <!-- Mobile Menu Start Here -->
 <div class="mobile-menu transparent-header">
     <nav class="mobile-header">
         <div class="header-logo">
-            <a href="index.html"><img src="cms_assets/images/logo/01.png" alt="logo"></a>
+            <a href="index"><img src="cms_assets/images/logo/01.png" alt="logo"></a>
         </div>
         <div class="header-bar">
             <span></span>
@@ -28,38 +14,10 @@
         <div class="mobile-menu-area">
             <div class="mobile-menu-area-inner">
                 <ul class="lab-ul">
-                    <li class="active">
-                        <a href="#0">Home</a>
-                        <ul class="lab-ul">
-                            <li><a href="index.html">Home Page One</a></li>
-                            <li><a href="index-2.html">Home Page Two</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="about.html">About</a></li>
-                    <li>
-                        <a href="#0">Pages</a>
-                        <ul class="lab-ul">
-                            <li><a href="team.html">Team Membar</a></li>
-                            <li><a href="faq-page.html">Faq Page</a></li>
-                            <li><a href="404.html">404 Page</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#0">Blog</a>
-                        <ul class="lab-ul">
-                            <li><a href="blog.html">Blog</a></li>
-                            <li><a href="blog-single.html">Blog Details</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#0">Shop</a>
-                        <ul class="lab-ul">
-                            <li><a href="product-page.html">Products Page</a></li>
-                            <li><a href="product-single.html">Products Details</a></li>
-                            <li><a href="cart-page.html">Cart Page</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="index">Home</a></li>
+                    <li><a href="index">Login</a></li>
+                    <li><a href="index">Home</a></li>
+                    <li><a href="index">Home</a></li>
                 </ul>
             </div>
         </div>
@@ -74,7 +32,7 @@
             <div class="row justify-content-center align-items-center">
                 <div class="col-lg-5 col-12">
                     <div class="logo py-2">
-                        <a href="index.html"><img src="cms_assets/images/logo/01.png" alt="logo"></a>
+                        <a href="index"><img src="cms_assets/images/logo/01.png" alt="logo"></a>
                     </div>
                 </div>
                 <div class="col-lg-7 col-12">
@@ -120,95 +78,13 @@
                     <div class="main-area w-100">
                         <div class="main-menu d-flex flex-wrap align-items-center justify-content-between w-100">
                             <div class="logo">
-                                <a href="index.html"><img src="cms_assets/images/logo/02.png" alt="logo"></a>
+                                <a href="index"><img src="cms_assets/images/logo/02.png" alt="logo"></a>
                             </div>
                             <ul class="lab-ul">
-                                <li class="active">
-                                    <a href="index.html">Home</a>
-                                    <ul class="lab-ul">
-                                        <li><a href="index.html" class="active">Home Page One</a></li>
-                                        <li><a href="index-2.html">Home Page Two</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="about.html">About</a></li>
-                                <li>
-                                    <a href="#0">Pages</a>
-                                    <ul class="lab-ul">
-                                        <li><a href="team.html">Team Membar</a></li>
-                                        <li><a href="faq-page.html">Faq Page</a></li>
-                                        <li><a href="404.html">404 Page</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#0">Blog</a>
-                                    <ul class="lab-ul">
-                                        <li><a href="blog.html">Blog</a></li>
-                                        <li><a href="blog-single.html">Blog Details</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#0">Shop</a>
-                                    <ul class="lab-ul">
-                                        <li><a href="product-page.html">Products Page</a></li>
-                                        <li><a href="product-single.html">Products Details</a></li>
-                                        <li><a href="cart-page.html">Cart Page</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#0">Gallery</a>
-                                    <ul class="lab-ul">
-                                        <li><a href="gallery-1.html">Gallery 1</a></li>
-                                        <li><a href="gallery-2.html">Gallery 2</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="contact.html">Contact</a></li>
-                            </ul>
-                            <ul class="lab-ul search-cart">
-                                <li>
-                                    <div class="cart-option">
-                                        <i class="icofont-cart-alt"></i>
-                                        <div class="cart-content">
-                                            <div class="cart-item">
-                                                <div class="cart-img">
-                                                    <a href="#"><img src="cms_assets/images/products/product/01.png" alt="cart"></a>
-                                                </div>
-                                                <div class="cart-des">
-                                                    <a href="#">Product Title Here</a>
-                                                    <p>$20.00</p>
-                                                </div>
-                                                <div class="cart-btn">
-                                                    <a href="#"><i class="icofont-close-circled"></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="cart-item">
-                                                <div class="cart-img">
-                                                    <a href="#"><img src="cms_assets/images/products/product/02.png" alt="cart"></a>
-                                                </div>
-                                                <div class="cart-des">
-                                                    <a href="#">Product Title Here</a>
-                                                    <p>$20.00</p>
-                                                </div>
-                                                <div class="cart-btn">
-                                                    <a href="#"><i class="icofont-close-circled"></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="cart-bottom">
-                                                <div class="cart-subtotal">
-                                                    <p>Total: <b class="float-right">$40.00</b></p>
-                                                </div>
-                                                <div class="cart-action">
-                                                    <a href="#" class="lab-btn"><span>View Cart</span></a>
-                                                    <a href="#" class="lab-btn"><span>Check Out</span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="search-option">
-                                        <i class="icofont-search-2"></i>
-                                    </div>
-                                </li>
+                                <li><a href="index">Home</a></li>
+                                <li><a href="login">Login</a></li>
+                                <li><a href="user_sign_up?access=customer">Customer Sign Up</a></li>
+                                <li><a href="user_sign_up?access=supplier">Supplier Sign Up</a></li>
                             </ul>
                         </div>
                     </div>
