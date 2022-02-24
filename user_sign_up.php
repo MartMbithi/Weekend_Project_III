@@ -143,7 +143,7 @@ require_once('partials/head.php');
                         </div>
                         <div class="form-group row m-t-30 mb-0">
                             <div class="col-12">
-                                <a href="index" class="text-muted"><i class="fa fa-lock m-r-5"></i> Already Has Account?</a>
+                                <a href="login" class="text-muted"><i class="fa fa-lock m-r-5"></i> Already Has Account?</a>
                             </div>
                         </div>
                     </form>

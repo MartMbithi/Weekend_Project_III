@@ -61,19 +61,31 @@
 session_start();
 require_once 'config/config.php';
 require_once 'config/codeGen.php';
-if (isset($_POST['reset_password'])) {
+
+/* Handle Login */
+if (isset($_POST['Login'])) {
     $user_email = $_POST['user_email'];
-    /* Check If User Exists */
-    $sql = "SELECT * FROM  users WHERE user_email = '$user_email'";
-    $res = mysqli_query($mysqli, $sql);
-    if (mysqli_num_rows($res) > 0) {
-        /* Redirect User To Confirm Password */
-        $_SESSION['success'] = 'Password Reset Token Generated, Proceed To Confirm Password';
-        $_SESSION['user_email'] = $user_email;
-        header('Location: confirm_password');
-        exit;
+    $user_password = sha1(md5($_POST['user_password']));
+    $stmt = $mysqli->prepare("SELECT user_id, user_name, user_access_level, user_email, user_password FROM users WHERE user_email=? AND user_password=?");
+    $stmt->bind_param('ss', $user_email, $user_password);
+    $stmt->execute();
+    $stmt->bind_result($user_id, $user_name, $user_access_level, $user_email, $user_password);
+    $rs = $stmt->fetch();
+
+    /* Session Variables */
+    $_SESSION['user_id'] = $user_id;
+    $_SESSION['user_name'] = $user_name;
+    $_SESSION['user_access_level']  = $user_access_level;
+
+    /* Determine Where To Access */
+    if ($rs && $user_access_level == 'staff') {
+        header("location:dashboard");
+    } elseif ($rs && $user_access_level == 'supplier') {
+        header("location:supplier_dashboard");
+    } elseif ($rs && $user_access_level == 'customer') {
+        header("location:customer_dashboard");
     } else {
-        $err = "Email Address  Does Not Exist";
+        $err = "Access Denied Please Check Your Email Or Password";
     }
 }
 
@@ -97,7 +109,7 @@ require_once('partials/head.php');
                 <div class="m-t-10 p-20">
                     <div class="row">
                         <div class="col-12 text-center">
-                            <h6 class="text-muted text-uppercase m-b-0 m-t-0">Reset Password</h6>
+                            <h6 class="text-muted text-uppercase m-b-0 m-t-0">Sign In</h6>
                         </div>
                     </div>
                     <form class="m-t-20" method="POST">
@@ -107,15 +119,34 @@ require_once('partials/head.php');
                                 <input class="form-control" type="text" name="user_email" required placeholder="Email">
                             </div>
                         </div>
+
+                        <div class="form-group row">
+                            <div class="col-12">
+                                <input class="form-control" name="user_password" type="password" required placeholder="Password">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-12">
+
+                            </div>
+                        </div>
+
                         <div class="form-group text-center row m-t-10">
                             <div class="col-12">
-                                <button class="btn btn-success btn-block waves-effect waves-light" name="reset_password" type="submit">Reset Password</button>
+                                <button class="btn btn-success btn-block waves-effect waves-light" name="Login" type="submit">Log In</button>
                             </div>
                         </div>
 
                         <div class="form-group row m-t-30 mb-0">
                             <div class="col-12">
-                                <a href="login" class="text-muted"><i class="fa fa-lock m-r-5"></i> Remember your password?</a>
+                                <a href="reset_password" class="text-muted"><i class="fa fa-lock m-r-5"></i> Forgot Password?</a>
+                            </div>
+                            <div class="col-6">
+                                <a href="user_sign_up?access=customer" class="text-muted"><i class="fa fa-user-plus m-r-5"></i>Sign Up As Customer</a>
+                            </div>
+                            <div class="col-6">
+                                <a href="user_sign_up?access=supplier" class="text-muted"><i class="fa fa-user-plus m-r-5"></i>Sign Up As Supplier</a>
                             </div>
                         </div>
                     </form>
