@@ -1,6 +1,6 @@
 <?php
 /*
- * Created on Sat Feb 19 2022
+ * Created on Thu Feb 24 2022
  *
  *  Devlan Agency - devlan.co.ke 
  *
@@ -58,109 +58,91 @@
  * IN NO EVENT WILL DEVLAN  LIABILITY FOR ANY CLAIM, WHETHER IN CONTRACT 
  * TORT OR ANY OTHER THEORY OF LIABILITY, EXCEED THE LICENSE FEE PAID BY YOU, IF ANY.
  */
-session_start();
-require_once 'config/config.php';
-require_once 'config/codeGen.php';
 
-/* Handle Login */
-if (isset($_POST['Login'])) {
-    $user_email = $_POST['user_email'];
-    $user_password = sha1(md5($_POST['user_password']));
-    $stmt = $mysqli->prepare("SELECT user_id, user_name, user_access_level, user_email, user_password FROM users WHERE user_email=? AND user_password=?");
-    $stmt->bind_param('ss', $user_email, $user_password);
-    $stmt->execute();
-    $stmt->bind_result($user_id, $user_name, $user_access_level, $user_email, $user_password);
-    $rs = $stmt->fetch();
 
-    /* Session Variables */
-    $_SESSION['user_id'] = $user_id;
-    $_SESSION['user_name'] = $user_name;
-    $_SESSION['user_access_level']  = $user_access_level;
-
-    /* Determine Where To Access */
-    if ($rs && $user_access_level == 'staff') {
-        header("location:dashboard");
-    } elseif ($rs && $user_access_level == 'supplier') {
-        header("location:supplier_dashboard");
-    } elseif ($rs && $user_access_level == 'customer') {
-        header("location:customer_dashboard");
-    } else {
-        $err = "Access Denied Please Check Your Email Or Password";
-    }
-}
-
-/* Load Header Partial */
-require_once('partials/head.php');
+/* Load Header Partial*/
+require_once('cms_partials/head.php');
 ?>
 
 <body>
 
-    <div class="account-pages"></div>
-    <div class="clearfix"></div>
-    <div class="wrapper-page">
-
-        <div class="account-bg">
-            <div class="card-box mb-0">
-                <div class="text-center m-t-20">
-                    <a href="" class="logo">
-                        <span>Poultry Farm Information Management System</span>
-                    </a>
-                </div>
-                <div class="m-t-10 p-20">
-                    <div class="row">
-                        <div class="col-12 text-center">
-                            <h6 class="text-muted text-uppercase m-b-0 m-t-0">Sign In</h6>
-                        </div>
-                    </div>
-                    <form class="m-t-20" method="POST">
-
-                        <div class="form-group row">
-                            <div class="col-12">
-                                <input class="form-control" type="text" name="user_email" required placeholder="Email">
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-12">
-                                <input class="form-control" name="user_password" type="password" required placeholder="Password">
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-12">
-
-                            </div>
-                        </div>
-
-                        <div class="form-group text-center row m-t-10">
-                            <div class="col-12">
-                                <button class="btn btn-success btn-block waves-effect waves-light" name="Login" type="submit">Log In</button>
-                            </div>
-                        </div>
-
-                        <div class="form-group row m-t-30 mb-0">
-                            <div class="col-12">
-                                <a href="reset_password" class="text-muted"><i class="fa fa-lock m-r-5"></i> Forgot Password?</a>
-                            </div>
-                            <div class="col-6">
-                                <a href="user_sign_up?access=customer" class="text-muted"><i class="fa fa-user-plus m-r-5"></i>Sign Up As Customer</a>
-                            </div>
-                            <div class="col-6">
-                                <a href="user_sign_up?access=supplier" class="text-muted"><i class="fa fa-user-plus m-r-5"></i>Sign Up As Supplier</a>
-                            </div>
-                        </div>
-                    </form>
-
-                </div>
-
-                <div class="clearfix"></div>
+    <!-- preloader start here -->
+    <div class="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-icon">
+                <span></span>
+                <span></span>
             </div>
         </div>
-        <!-- end card-box-->
     </div>
-    <!-- end wrapper page -->
-    <?php require('partials/scripts.php'); ?>
+    <!-- preloader ending here -->
 
+
+    <?php require_once('cms_partials/navbar.php'); ?>
+    <!-- Banner Section Start Here -->
+    <section class="banner">
+        <div class="banner-slider">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="banner-slider-part" style="background-image: url(cms_assets/images/bg-images/index.jpeg);">
+                        <div class="overlay"></div>
+                        <div class="container">
+                            <div class="row flex-row-reverse justify-content-center align-items-center">
+                                <div class="col-12">
+                                    <div class="banner-content">
+                                        <h1 class="banner-title"><B class="d-lg-block">Poultry Farm Information Management System</h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Banner Section Ending Here -->
+
+    <!-- about section start here -->
+    <section class="about-section relative padding-tb">
+        <div class="container">
+            <div class="row align-items-center mb-15">
+                <div class="col-lg-6 col-12">
+                    <div class="about-thumb">
+                        <img src="cms_assets/images/about/01.png" alt="about-thumb">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-12">
+                    <div class="about-wrapper p-0">
+                        <div class="about-title">
+                            <h2><span class="d-lg-block"> Poultry Farm Information </span>Management System</h2>
+                            <p>This system is a full-featured Software with a user-friendly user interface,
+                                which allows you to manage your Poultry Graphically efficiently.
+                                It is developed specifically for Integrated Poultry Farmers,
+                                Poultry Brokers, Egg Trading, Feed Trading, Chicken Trading,
+                                Feed Formulation, which is affordable, powerful, and easy to use. This system implements the following modules:
+                            </p>
+                        </div>
+                        <div class="about-content">
+                            <ul class="lab-ul list-group">
+                                <li class="list-group-item py-1 px-0 border-none"><i class="icofont-tick-boxed mr-2 color-theme"></i>Customer Management Module</li>
+                                <li class="list-group-item py-1 px-0 border-none"><i class="icofont-tick-boxed mr-2 color-theme"></i>Staffs Management Module</li>
+                                <li class="list-group-item py-1 px-0 border-none"><i class="icofont-tick-boxed mr-2 color-theme"></i>Poultry Products Management Module</li>
+                                <li class="list-group-item py-1 px-0 border-none"><i class="icofont-tick-boxed mr-2 color-theme"></i>Suppliers Management Module</li>
+                                <li class="list-group-item py-1 px-0 border-none"><i class="icofont-tick-boxed mr-2 color-theme"></i>Expenses Management Module</li>
+                                <li class="list-group-item py-1 px-0 border-none"><i class="icofont-tick-boxed mr-2 color-theme"></i>Powerful Reporting Module</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- about section ending here -->
+
+    <!-- footer section start here -->
+    <?php require_once('cms_partials/footer.php'); ?>
+    <!-- footer section start here -->
+    <?php require_once('cms_partials/scripts.php'); ?>
 </body>
 
 </html>

@@ -105,8 +105,8 @@ require_once('partials/head.php');
         <div class="account-bg">
             <div class="card-box mb-0">
                 <div class="text-center m-t-20">
-                    <a href="" class="logo">
-                        <span>Poultry Farm Information Management System</span>
+                    <a href="" class="logo text-warning">
+                        <img src="cms_assets/images/logo/01.png" alt="">
                     </a>
                 </div>
                 <div class="m-t-10 p-20">
@@ -143,7 +143,7 @@ require_once('partials/head.php');
                         </div>
                         <div class="form-group row m-t-30 mb-0">
                             <div class="col-12">
-                                <a href="index" class="text-muted"><i class="fa fa-lock m-r-5"></i> Already Has Account?</a>
+                                <a href="login" class="text-muted"><i class="fa fa-lock m-r-5"></i> Already Has Account?</a>
                             </div>
                         </div>
                     </form>

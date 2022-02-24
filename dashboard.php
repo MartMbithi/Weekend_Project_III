@@ -241,8 +241,7 @@ require_once('partials/head.php');
                                 $ret = "SELECT * FROM orders o
                                 INNER JOIN users u ON o.order_supplier_id = u.user_id
                                 INNER JOIN products p ON p.product_id = o.order_product_id
-                                WHERE o.order_type = 'supply'
-                                ";
+                                WHERE o.order_type = 'supply' LIMIT 10";
                                 $stmt = $mysqli->prepare($ret);
                                 $stmt->execute(); //ok
                                 $res = $stmt->get_result();

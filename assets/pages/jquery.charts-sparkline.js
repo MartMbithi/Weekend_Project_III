@@ -35,7 +35,7 @@ $( document ).ready(function() {
                 height: '165',
                 barWidth: '10',
                 barSpacing: '3',
-                barColor: '#64b0f2'
+                barColor: '#fe964d'
             });
 
             $('#sparkline3').sparkline([20, 40, 30], {
