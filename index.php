@@ -90,7 +90,7 @@ require_once('cms_partials/head.php');
                             <div class="row flex-row-reverse justify-content-center align-items-center">
                                 <div class="col-12">
                                     <div class="banner-content">
-                                        <h1 class="banner-title"><B class="d-lg-block">Poultry Farm Information Management System</h1>
+                                        <h1 class="banner-title"><B class="d-lg-block">Poultry Farm Information System</h1>
                                     </div>
                                 </div>
                             </div>
@@ -114,7 +114,7 @@ require_once('cms_partials/head.php');
                 <div class="col-lg-6 col-12">
                     <div class="about-wrapper p-0">
                         <div class="about-title">
-                            <h2><span class="d-lg-block"> Poultry Farm Information </span>Management System</h2>
+                            <h2><span class="d-lg-block"> Poultry Farm Information </span>System</h2>
                             <p>This system is a full-featured Software with a user-friendly user interface,
                                 which allows you to manage your Poultry Graphically efficiently.
                                 It is developed specifically for Integrated Poultry Farmers,

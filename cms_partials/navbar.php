@@ -53,7 +53,7 @@
                                 </div>
                                 <div class="ht-add-content">
                                     <span>Send Mail </span>
-                                    <span class="d-block text-bold">info@poultry_mis.com</span>
+                                    <span class="d-block text-bold">info@poultry_is.com</span>
                                 </div>
                             </li>
                             <li class="d-flex flex-wrap align-items-center">
