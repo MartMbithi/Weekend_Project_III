@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Poultry Farm Information Management System</title>
+    <title>Poultry Farm Information System</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
