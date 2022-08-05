@@ -131,9 +131,9 @@ if ($access_level == 'staff') {
                         <li>
                             <a href="dashboard"><i class="fa fa-home"></i> <span> Dashboard </span> </a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href="staffs"><i class="fa fa-user"></i> <span> Staffs </span> </a>
-                        </li>
+                        </li> -->
                         <li>
                             <a href="suppliers"><i class="fa fa-user-plus"></i> <span> Suppliers </span> </a>
                         </li>
