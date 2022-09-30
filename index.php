@@ -90,7 +90,7 @@ require_once('cms_partials/head.php');
                             <div class="row flex-row-reverse justify-content-center align-items-center">
                                 <div class="col-12">
                                     <div class="banner-content">
-                                        <h1 class="banner-title"><B class="d-lg-block">Poultry Farm Information System</h1>
+                                        <h1 class="banner-title"><B class="d-lg-block">Poultry Management System</h1>
                                     </div>
                                 </div>
                             </div>
@@ -102,42 +102,7 @@ require_once('cms_partials/head.php');
     </section>
     <!-- Banner Section Ending Here -->
 
-    <!-- about section start here -->
-    <section class="about-section relative padding-tb">
-        <div class="container">
-            <div class="row align-items-center mb-15">
-                <div class="col-lg-6 col-12">
-                    <div class="about-thumb">
-                        <img src="cms_assets/images/about/01.png" alt="about-thumb">
-                    </div>
-                </div>
-                <div class="col-lg-6 col-12">
-                    <div class="about-wrapper p-0">
-                        <div class="about-title">
-                            <h2><span class="d-lg-block"> Poultry Farm Information </span>System</h2>
-                            <p>This system is a full-featured Software with a user-friendly user interface,
-                                which allows you to manage your Poultry Graphically efficiently.
-                                It is developed specifically for Integrated Poultry Farmers,
-                                Poultry Brokers, Egg Trading, Feed Trading, Chicken Trading,
-                                Feed Formulation, which is affordable, powerful, and easy to use. This system implements the following modules:
-                            </p>
-                        </div>
-                        <div class="about-content">
-                            <ul class="lab-ul list-group">
-                                <li class="list-group-item py-1 px-0 border-none"><i class="icofont-tick-boxed mr-2 color-theme"></i>Customer Management Module</li>
-                                <li class="list-group-item py-1 px-0 border-none"><i class="icofont-tick-boxed mr-2 color-theme"></i>Staffs Management Module</li>
-                                <li class="list-group-item py-1 px-0 border-none"><i class="icofont-tick-boxed mr-2 color-theme"></i>Poultry Products Management Module</li>
-                                <li class="list-group-item py-1 px-0 border-none"><i class="icofont-tick-boxed mr-2 color-theme"></i>Suppliers Management Module</li>
-                                <li class="list-group-item py-1 px-0 border-none"><i class="icofont-tick-boxed mr-2 color-theme"></i>Expenses Management Module</li>
-                                <li class="list-group-item py-1 px-0 border-none"><i class="icofont-tick-boxed mr-2 color-theme"></i>Powerful Reporting Module</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- about section ending here -->
+   
 
     <!-- footer section start here -->
     <?php require_once('cms_partials/footer.php'); ?>
