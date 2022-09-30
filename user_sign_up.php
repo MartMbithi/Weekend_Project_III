@@ -106,7 +106,7 @@ require_once('partials/head.php');
             <div class="card-box mb-0">
                 <div class="text-center m-t-20">
                     <a href="" class="logo text-warning">
-                        <img src="cms_assets/images/logo/01.png" alt="">
+                        Poultry Management System
                     </a>
                 </div>
                 <div class="m-t-10 p-20">

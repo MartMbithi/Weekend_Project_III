@@ -32,7 +32,7 @@
             <div class="row justify-content-center align-items-center">
                 <div class="col-lg-5 col-12">
                     <div class="logo py-2">
-                        <a href="index"><img src="cms_assets/images/logo/01.png" alt="logo"></a>
+                        <a href="index"><img src="cms_assets/images/logo/01.png" alt="logo"> Poultry Management System</a>
                     </div>
                 </div>
                 <div class="col-lg-7 col-12">

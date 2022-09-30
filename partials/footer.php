@@ -1,3 +1,3 @@
 <footer class="footer">
-    Poultry Farm Information System.
+    Poultry Management System
 </footer>

@@ -69,7 +69,7 @@ if ($access_level == 'staff') {
                 <!-- LOGO -->
                 <div class="topbar-left">
                     <a href="dashboard" class="logo">
-                        <span>Poultry Farm IS</span>
+                        <span>Poultry Management System</span>
                     </a>
                 </div>
                 <!-- End Logo container-->
@@ -177,7 +177,7 @@ if ($access_level == 'staff') {
                 <!-- LOGO -->
                 <div class="topbar-left">
                     <a href="supplier_dashboard" class="logo">
-                        <span>Poultry Farm IS</span>
+                        <span>Poultry Management System</span>
                     </a>
                 </div>
                 <!-- End Logo container-->
@@ -266,7 +266,7 @@ if ($access_level == 'staff') {
                 <!-- LOGO -->
                 <div class="topbar-left">
                     <a href="customer_dashboard" class="logo">
-                        <span>Poultry Farm IS</span>
+                        <span>Poultry Management System</span>
                     </a>
                 </div>
                 <!-- End Logo container-->
